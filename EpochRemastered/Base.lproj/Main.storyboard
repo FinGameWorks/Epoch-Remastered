@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kAt-q3-dRD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Noise Debugger View Controller-->
+        <scene sceneID="Ghh-o4-Y3a">
+            <objects>
+                <viewController id="kAt-q3-dRD" customClass="NoiseDebuggerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7ns-bm-6KY"/>
+                        <viewControllerLayoutGuide type="bottom" id="5TV-ZQ-xqR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jrb-oC-gSO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kru-8x-Kpr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </sceneKitView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kru-8x-Kpr" firstAttribute="top" secondItem="jrb-oC-gSO" secondAttribute="topMargin" id="9PI-i3-LgQ"/>
+                            <constraint firstItem="kru-8x-Kpr" firstAttribute="leading" secondItem="jrb-oC-gSO" secondAttribute="leadingMargin" constant="-20" id="9wa-xa-gLl"/>
+                            <constraint firstItem="5TV-ZQ-xqR" firstAttribute="top" secondItem="kru-8x-Kpr" secondAttribute="bottom" id="MIi-BF-6Ec"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kru-8x-Kpr" secondAttribute="trailing" constant="-20" id="wB2-dn-Km6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="PlanetSceneKitView" destination="kru-8x-Kpr" id="tDD-VB-rJh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7R-th-UUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="224" y="-448"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" sceneMemberID="viewController">
+                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </sceneKitView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

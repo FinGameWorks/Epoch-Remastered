@@ -2,7 +2,7 @@
 
 # to-do
 * [ ] Runtime HeightMap Generation
-* [*] Cubemap mapping to Sphere  
+* [x] Cubemap mapping to Sphere  
 * [ ] Procedurally Skybox (using noise)
 * [ ] Runtime SplatMap Generation
 * [ ] ColorMap Based On HeightMap

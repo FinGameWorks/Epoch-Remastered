@@ -7,7 +7,14 @@
 //
 
 #import "NoiseDebuggerViewController.h"
+
+//Mesh Generation
 #import <SceneKit/SceneKit.h>
+#import <ModelIO/ModelIO.h>
+#import <SceneKit/ModelIO.h>
+
+//Image Transform
+#import "JZ_ImageHelper.h"
 
 //NoiseLib
 #import "noise.h"
@@ -72,7 +79,16 @@
     
     DebugerImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"tutorial.bmp"]];
     
+    
+    cv::Mat PanoMap = [[JZ_ImageHelper sharedManager]cvMatFromUIImage:DebugerImage];
+
+    NSMutableArray *CubeMapArray = [[JZ_ImageHelper sharedManager] createCubeMapArray:PanoMap Width:512 Height:512];
+    
+    
+    
     [self initSceneKitWith:DebugerImage];
+    
+    
 }
 
 - (void)initSceneKitWith:(UIImage *)PlanetTexture
@@ -84,15 +100,12 @@
     PlanetSceneKitView.backgroundColor = [UIColor blackColor];
     PlanetSceneKitView.debugOptions = SCNDebugOptionShowWireframe;
     
-    SCNSphere *PlanetSphere = [SCNSphere sphereWithRadius:30.0f];
-    PlanetSphere.geodesic = NO;
-    
-    SCNNode *PlanetNode = [SCNNode nodeWithGeometry:PlanetSphere];
-    [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
-    
-    SCNMaterial *PlanetMaterial = [SCNMaterial material];
-    PlanetMaterial.diffuse.contents = PlanetTexture;
-    PlanetSphere.materials = @[PlanetMaterial];
+//    SCNSphere *PlanetSphere = [SCNSphere sphereWithRadius:30.0f];
+//    PlanetSphere.geodesic = NO;
+//    
+//    SCNNode *PlanetNode = [SCNNode nodeWithGeometry:PlanetSphere];
+//    [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
+//
     
     // create and add a camera to the scene
     SCNNode *cameraNode = [SCNNode node];
@@ -116,7 +129,98 @@
     ambientLightNode.light.type = SCNLightTypeAmbient;
     ambientLightNode.light.color = [UIColor darkGrayColor];
     [PlanetSceneKitView.scene.rootNode addChildNode:ambientLightNode];
+    
+    
+    
+    
+    SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:60.0f height:60.0f length:60.0f chamferRadius:0.0f];
+    SCNBoxToSphereMapping.widthSegmentCount = 16;
+    SCNBoxToSphereMapping.heightSegmentCount = 16;
+    SCNBoxToSphereMapping.lengthSegmentCount = 16;
+    
+    SCNNode *PlanetNode = [SCNNode nodeWithGeometry:SCNBoxToSphereMapping];
+    [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
+    
+    [SCNTransaction flush];
+    
+    NSArray *geometrySources = [PlanetNode.geometry geometrySources];
+    
+    // Get the vertex sources
+    NSArray *vertexSources = [PlanetNode.geometry geometrySourcesForSemantic:SCNGeometrySourceSemanticVertex];
+    
+    // Get the first source
+    SCNGeometrySource *vertexSource = vertexSources[0]; // TODO: Parse all the sources
+    
+    long stride = vertexSource.dataStride; // in bytes
+    long offset = vertexSource.dataOffset; // in bytes
+    
+    long componentsPerVector = vertexSource.componentsPerVector;
+    long bytesPerVector = componentsPerVector * vertexSource.bytesPerComponent;
+    long vectorCount = (long)vertexSource.vectorCount;
+    
+    
+    SCNVector3 vertices[vectorCount]; // A new array for vertices
+    
+    // for each vector, read the bytes
+    for (long i=0; i<vectorCount; i++)
+    {
+        
+        // Assuming that bytes per component is 4 (a float)
+        // If it was 8 then it would be a double (aka CGFloat)
+        
+        //xyz 3 componet
+        float vectorData[componentsPerVector];
+        
+        // The range of bytes for this vector
+        NSRange byteRange = NSMakeRange(i*stride + offset, // Start at current stride + offset
+                                        bytesPerVector);   // and read the lenght of one vector
+        
+        // Read into the vector data buffer
+        [vertexSource.data getBytes:&vectorData range:byteRange];
+        
+        // At this point you can read the data from the float array
+        
+        //
+        float x = vectorData[0] / SCNBoxToSphereMapping.width * 2.0f;
+        float y = vectorData[1] / SCNBoxToSphereMapping.width * 2.0f;
+        float z = vectorData[2] / SCNBoxToSphereMapping.width * 2.0f;
+        
+        float SphereX = x*sqrt(1-pow(y,2)/2.0f-pow(z,2)/2.0f + pow(y*z,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
+        float SphereY = y*sqrt(1-pow(z,2)/2.0f-pow(x,2)/2.0f + pow(x*z,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
 
+        float SphereZ = z*sqrt(1-pow(x,2)/2.0f-pow(y,2)/2.0f + pow(y*x,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
+
+        
+        // ... Maybe even save it as an SCNVector3 for later use ...
+        //[vertices addObject:[NSValue valueWithSCNVector3:SCNVector3Make(SphereX, SphereY, SphereZ)]];
+        vertices[i] = SCNVector3Make(SphereX, SphereY, SphereZ);
+        
+        // ... or just log it
+        NSLog(@"x:%f, y:%f, z:%f", x, y, z);
+        NSLog(@"SphereX:%f, SphereY:%f, SphereX:%f", SphereX, SphereY, SphereZ);
+    }
+    
+    
+    
+    SCNGeometrySource *DeformedGeometrySource = [SCNGeometrySource geometrySourceWithVertices:vertices count:vectorCount];
+    NSMutableArray *SCNGeometrySourceArray = [NSMutableArray arrayWithObject:DeformedGeometrySource];
+    [SCNGeometrySourceArray addObject:[geometrySources objectAtIndex:2]];
+    
+    NSArray *DeformGeometryElement = [PlanetNode.geometry geometryElements];
+    SCNGeometry *DeformedGeometry = [SCNGeometry geometryWithSources:SCNGeometrySourceArray elements:DeformGeometryElement];
+    
+    
+    MDLMesh *DeformedGeometryUsingMDL = [MDLMesh meshWithSCNGeometry:DeformedGeometry];
+    [DeformedGeometryUsingMDL addNormalsWithAttributeNamed:MDLVertexAttributeNormal creaseThreshold:1.0f];
+    
+    DeformedGeometry = [SCNGeometry geometryWithMDLMesh:DeformedGeometryUsingMDL];
+    PlanetNode.geometry = DeformedGeometry;
+    
+    
+    SCNMaterial *PlanetMaterial = [SCNMaterial material];
+    PlanetMaterial.diffuse.contents = PlanetTexture;
+    PlanetNode.geometry.materials = @[PlanetMaterial];
+    
 }
 
 -(void)EmptySandbox

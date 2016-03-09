@@ -24,10 +24,13 @@
 @property (strong, nonatomic) UIImage *DebugerImage;
 @property (weak, nonatomic) IBOutlet SCNView *PlanetSceneKitView;
 
+@property (nonatomic,strong) SCNNode * PlanetNode;
+
 @end
 
 @implementation NoiseDebuggerViewController
-@synthesize DebugerImage,PlanetSceneKitView;
+@synthesize DebugerImage,PlanetSceneKitView,PlanetNode;
+@synthesize RandomSeedSlider;
 
 - (void)viewDidLoad
 {
@@ -36,15 +39,26 @@
     //清空 NSDocumentDirectory
     [self EmptySandbox];
     
+    [RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    
+    [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
+    
+    
+}
+
+- (NSMutableArray *)NoiseCubemapWithSeed:(SCNVector3)ParameterVector3
+{
     module::Perlin myModule;
-    myModule.SetOctaveCount (10);
-    myModule.SetFrequency(2.0);
-    myModule.SetPersistence (0.6);
+    
+    myModule.SetOctaveCount (ParameterVector3.x);
+    myModule.SetFrequency(ParameterVector3.y);
+    myModule.SetPersistence (ParameterVector3.z);
     utils::NoiseMap heightMap;
     utils::NoiseMapBuilderSphere heightMapBuilder;
     heightMapBuilder.SetSourceModule (myModule);
     heightMapBuilder.SetDestNoiseMap (heightMap);
-    heightMapBuilder.SetDestSize (1024, 512);
+    heightMapBuilder.SetDestSize (512, 256);
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
     heightMapBuilder.Build ();
     
@@ -61,12 +75,12 @@
     renderer.AddGradientPoint ( 0.6750, utils::Color (224, 224,   0, 255)); // dirt
     renderer.AddGradientPoint ( 0.7500, utils::Color (128, 128, 128, 255)); // rock
     renderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // snow
-//    renderer.EnableLight ();
-//    renderer.SetLightContrast (3.0);
-//    renderer.SetLightBrightness (2.0);
+    //    renderer.EnableLight ();
+    //    renderer.SetLightContrast (3.0);
+    //    renderer.SetLightBrightness (2.0);
     renderer.Render ();
     
-
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = [NSString stringWithFormat:@"%@/tutorial.bmp",paths.firstObject];
     
@@ -81,8 +95,8 @@
     
     
     cv::Mat PanoMap = [[JZ_ImageHelper sharedManager]cvMatFromUIImage:DebugerImage];
-
-    NSMutableArray *CubeMapArray = [[JZ_ImageHelper sharedManager] createCubeMapArray:PanoMap Width:512 Height:512];
+    
+    NSMutableArray *CubeMapArray = [[JZ_ImageHelper sharedManager] createCubeMapArray:PanoMap Width:256 Height:256];
     NSMutableArray *CubeMappingMaterials = [NSMutableArray array];
     
     
@@ -104,11 +118,10 @@
         Material.diffuse.contents          = Image;
         [CubeMappingMaterials addObject:Material];
     }
-    
-    [self initSceneKitWith:CubeMappingMaterials];
-    
-    
+    return CubeMappingMaterials;
 }
+
+
 
 - (void)initSceneKitWith:(NSMutableArray *)CubeMappingMaterials
 {
@@ -158,7 +171,7 @@
     //(that way it doesn't need six draw calls to render if it doesn't have six materials).
     SCNBoxToSphereMapping.materials = CubeMappingMaterials;
     
-    SCNNode *PlanetNode = [SCNNode nodeWithGeometry:SCNBoxToSphereMapping];
+    PlanetNode = [SCNNode nodeWithGeometry:SCNBoxToSphereMapping];
     [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
     
     [SCNTransaction flush];
@@ -271,6 +284,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)sliderValueChanged:(UISlider *)sender
+{
+    NSLog(@"slider value = %f", sender.value);
+    
+
+    PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value, 2.0f*sender.value, 0.6f*sender.value)];
 }
 
 /*

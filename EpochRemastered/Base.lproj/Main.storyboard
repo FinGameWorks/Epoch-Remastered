@@ -21,17 +21,24 @@
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kru-8x-Kpr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </sceneKitView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lxj-25-blW">
+                                <rect key="frame" x="18" y="20" width="564" height="31"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lxj-25-blW" firstAttribute="trailing" secondItem="jrb-oC-gSO" secondAttribute="trailingMargin" id="00a-bf-yaQ"/>
                             <constraint firstItem="kru-8x-Kpr" firstAttribute="top" secondItem="jrb-oC-gSO" secondAttribute="topMargin" id="9PI-i3-LgQ"/>
                             <constraint firstItem="kru-8x-Kpr" firstAttribute="leading" secondItem="jrb-oC-gSO" secondAttribute="leadingMargin" constant="-20" id="9wa-xa-gLl"/>
                             <constraint firstItem="5TV-ZQ-xqR" firstAttribute="top" secondItem="kru-8x-Kpr" secondAttribute="bottom" id="MIi-BF-6Ec"/>
+                            <constraint firstItem="lxj-25-blW" firstAttribute="top" secondItem="7ns-bm-6KY" secondAttribute="bottom" id="PHO-mD-jBz"/>
+                            <constraint firstItem="lxj-25-blW" firstAttribute="leading" secondItem="jrb-oC-gSO" secondAttribute="leadingMargin" id="p7I-Kp-IEq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kru-8x-Kpr" secondAttribute="trailing" constant="-20" id="wB2-dn-Km6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="PlanetSceneKitView" destination="kru-8x-Kpr" id="tDD-VB-rJh"/>
+                        <outlet property="RandomSeedSlider" destination="lxj-25-blW" id="QiW-Oa-0Za"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7R-th-UUE" userLabel="First Responder" sceneMemberID="firstResponder"/>

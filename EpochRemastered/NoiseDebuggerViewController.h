@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NoiseDebuggerViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISlider *RandomSeedSlider;
 
 @end

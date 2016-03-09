@@ -44,7 +44,7 @@
     utils::NoiseMapBuilderSphere heightMapBuilder;
     heightMapBuilder.SetSourceModule (myModule);
     heightMapBuilder.SetDestNoiseMap (heightMap);
-    heightMapBuilder.SetDestSize (512, 256);
+    heightMapBuilder.SetDestSize (1024, 512);
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
     heightMapBuilder.Build ();
     
@@ -83,15 +83,34 @@
     cv::Mat PanoMap = [[JZ_ImageHelper sharedManager]cvMatFromUIImage:DebugerImage];
 
     NSMutableArray *CubeMapArray = [[JZ_ImageHelper sharedManager] createCubeMapArray:PanoMap Width:512 Height:512];
+    NSMutableArray *CubeMappingMaterials = [NSMutableArray array];
     
     
+    for (int i = 0; i < 6 ; i++)
+    {
+        UIImage *Image = [CubeMapArray objectAtIndex:i];
+        switch (i)
+        {
+            case 5:
+                Image = [[JZ_ImageHelper sharedManager] imageRotatedByDegrees:Image deg:-90.0f];
+                break;
+            case 4:
+                Image = [[JZ_ImageHelper sharedManager] imageRotatedByDegrees:Image deg:90.0f];
+                break;
+            default:
+                break;
+        }
+        SCNMaterial *Material              = [SCNMaterial material];
+        Material.diffuse.contents          = Image;
+        [CubeMappingMaterials addObject:Material];
+    }
     
-    [self initSceneKitWith:DebugerImage];
+    [self initSceneKitWith:CubeMappingMaterials];
     
     
 }
 
-- (void)initSceneKitWith:(UIImage *)PlanetTexture
+- (void)initSceneKitWith:(NSMutableArray *)CubeMappingMaterials
 {
     PlanetSceneKitView.scene = [SCNScene scene];
     
@@ -121,7 +140,7 @@
     lightNode.light.type = SCNLightTypeDirectional;
     lightNode.eulerAngles = SCNVector3Make(45.0f, 45.0f, 45.0f);
     lightNode.position = SCNVector3Make(10, 10, -10);
-    [PlanetSceneKitView.scene.rootNode addChildNode:lightNode];
+    //[PlanetSceneKitView.scene.rootNode addChildNode:lightNode];
     
     // create and add an ambient light to the scene
     SCNNode *ambientLightNode = [SCNNode node];
@@ -130,13 +149,14 @@
     ambientLightNode.light.color = [UIColor darkGrayColor];
     [PlanetSceneKitView.scene.rootNode addChildNode:ambientLightNode];
     
-    
-    
-    
     SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:60.0f height:60.0f length:60.0f chamferRadius:0.0f];
     SCNBoxToSphereMapping.widthSegmentCount = 16;
     SCNBoxToSphereMapping.heightSegmentCount = 16;
     SCNBoxToSphereMapping.lengthSegmentCount = 16;
+    
+    //SCNBox automatically recreates its set of geometry elements depending on how many materials you assign
+    //(that way it doesn't need six draw calls to render if it doesn't have six materials).
+    SCNBoxToSphereMapping.materials = CubeMappingMaterials;
     
     SCNNode *PlanetNode = [SCNNode nodeWithGeometry:SCNBoxToSphereMapping];
     [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
@@ -216,10 +236,7 @@
     DeformedGeometry = [SCNGeometry geometryWithMDLMesh:DeformedGeometryUsingMDL];
     PlanetNode.geometry = DeformedGeometry;
     
-    
-    SCNMaterial *PlanetMaterial = [SCNMaterial material];
-    PlanetMaterial.diffuse.contents = PlanetTexture;
-    PlanetNode.geometry.materials = @[PlanetMaterial];
+    PlanetNode.geometry.materials = CubeMappingMaterials;
     
 }
 

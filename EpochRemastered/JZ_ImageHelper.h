@@ -28,6 +28,11 @@
                                  Width:(int)width
                                 Height:(int)height;
 
+
+#pragma mark - Rotate UIImage
+
+- (UIImage *)imageRotatedByDegrees:(UIImage*)oldImage deg:(CGFloat)degrees;
+
 #pragma mark - Share Instance
 + (id)sharedManager;
 

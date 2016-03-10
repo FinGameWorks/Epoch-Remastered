@@ -21,7 +21,9 @@
 #include "noiseutils.h"
 
 @interface NoiseDebuggerViewController ()
-@property (strong, nonatomic) UIImage *DebugerImage;
+@property (strong, nonatomic) UIImage *UIColorImage;
+@property (strong, nonatomic) UIImage *UIHeightImage;
+
 @property (weak, nonatomic) IBOutlet SCNView *PlanetSceneKitView;
 
 @property (nonatomic,strong) SCNNode * PlanetNode;
@@ -29,7 +31,7 @@
 @end
 
 @implementation NoiseDebuggerViewController
-@synthesize DebugerImage,PlanetSceneKitView,PlanetNode;
+@synthesize UIColorImage,UIHeightImage,PlanetSceneKitView,PlanetNode;
 @synthesize RandomSeedSlider;
 
 - (void)viewDidLoad
@@ -40,7 +42,6 @@
     [self EmptySandbox];
     
     [RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
     
     [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
     
@@ -62,39 +63,54 @@
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
     heightMapBuilder.Build ();
     
-    utils::RendererImage renderer;
-    utils::Image image;
-    renderer.SetSourceNoiseMap (heightMap);
-    renderer.SetDestImage (image);
-    renderer.ClearGradient ();
-    renderer.AddGradientPoint (-1.0000, utils::Color (  0,   0, 128, 255)); // deeps
-    renderer.AddGradientPoint (-0.2500, utils::Color (  0,   0, 255, 255)); // shallow
-    renderer.AddGradientPoint ( 0.0000, utils::Color (  0, 128, 255, 255)); // shore
-    renderer.AddGradientPoint ( 0.0625, utils::Color (240, 240,  64, 255)); // sand
-    renderer.AddGradientPoint ( 0.1250, utils::Color ( 32, 160,   0, 255)); // grass
-    renderer.AddGradientPoint ( 0.6750, utils::Color (224, 224,   0, 255)); // dirt
-    renderer.AddGradientPoint ( 0.7500, utils::Color (128, 128, 128, 255)); // rock
-    renderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // snow
-    //    renderer.EnableLight ();
-    //    renderer.SetLightContrast (3.0);
-    //    renderer.SetLightBrightness (2.0);
-    renderer.Render ();
-    
-    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = [NSString stringWithFormat:@"%@/tutorial.bmp",paths.firstObject];
     
+    utils::RendererImage HeightRenderer;
+    utils::Image HeightImage;
+    HeightRenderer.SetSourceNoiseMap (heightMap);
+    HeightRenderer.SetDestImage (HeightImage);
+    HeightRenderer.ClearGradient ();
+    HeightRenderer.AddGradientPoint ( -1.0000, utils::Color (0, 0, 0, 255)); // rock
+    HeightRenderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // snow
+    HeightRenderer.Render ();
+    
+    NSString *basePath = [NSString stringWithFormat:@"%@/HeightMap.bmp",paths.firstObject];
     utils::WriterBMP writer;
-    writer.SetSourceImage (image);
+    writer.SetSourceImage (HeightImage);
     std::string stdbasePath = *new std::string([basePath UTF8String]);
     writer.SetDestFilename (stdbasePath);
     writer.WriteDestFile ();
+
+    utils::RendererImage ColorRenderer;
+    utils::Image ColorImage;
+    ColorRenderer.SetSourceNoiseMap (heightMap);
+    ColorRenderer.SetDestImage (ColorImage);
+    ColorRenderer.ClearGradient ();
+    ColorRenderer.AddGradientPoint (-1.0000, utils::Color (  0,   0, 128, 255)); // deeps
+    ColorRenderer.AddGradientPoint (-0.2500, utils::Color (  0,   0, 255, 255)); // shallow
+    ColorRenderer.AddGradientPoint ( 0.0000, utils::Color (  0, 128, 255, 255)); // shore
+    ColorRenderer.AddGradientPoint ( 0.0625, utils::Color (240, 240,  64, 255)); // sand
+    ColorRenderer.AddGradientPoint ( 0.1250, utils::Color ( 32, 160,   0, 255)); // grass
+    ColorRenderer.AddGradientPoint ( 0.6750, utils::Color (224, 224,   0, 255)); // dirt
+    ColorRenderer.AddGradientPoint ( 0.7500, utils::Color (128, 128, 128, 255)); // rock
+    ColorRenderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // snow
+    //    renderer.EnableLight ();
+    //    renderer.SetLightContrast (3.0);
+    //    renderer.SetLightBrightness (2.0);
+    ColorRenderer.Render ();
+    
+    basePath = [NSString stringWithFormat:@"%@/ColorMap.bmp",paths.firstObject];
+    writer.SetSourceImage (ColorImage);
+    stdbasePath = *new std::string([basePath UTF8String]);
+    writer.SetDestFilename (stdbasePath);
+    writer.WriteDestFile ();
+    
+    UIColorImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"ColorMap.bmp"]];
+
+    UIHeightImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"HeightMap.bmp"]];
     
     
-    DebugerImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"tutorial.bmp"]];
-    
-    
-    cv::Mat PanoMap = [[JZ_ImageHelper sharedManager]cvMatFromUIImage:DebugerImage];
+    cv::Mat PanoMap = [[JZ_ImageHelper sharedManager]cvMatFromUIImage:UIColorImage];
     
     NSMutableArray *CubeMapArray = [[JZ_ImageHelper sharedManager] createCubeMapArray:PanoMap Width:256 Height:256];
     NSMutableArray *CubeMappingMaterials = [NSMutableArray array];
@@ -114,10 +130,15 @@
             default:
                 break;
         }
+        
+        Image = [JZ_ImageHelper drawText:[NSString stringWithFormat:@"%d",i+1] fontSize:30.0f inImage:Image atPoint:CGPointMake(Image.size.width/2, Image.size.height/2)];
         SCNMaterial *Material              = [SCNMaterial material];
         Material.diffuse.contents          = Image;
         [CubeMappingMaterials addObject:Material];
     }
+    
+    
+    
     return CubeMappingMaterials;
 }
 
@@ -163,9 +184,9 @@
     [PlanetSceneKitView.scene.rootNode addChildNode:ambientLightNode];
     
     SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:60.0f height:60.0f length:60.0f chamferRadius:0.0f];
-    SCNBoxToSphereMapping.widthSegmentCount = 16;
-    SCNBoxToSphereMapping.heightSegmentCount = 16;
-    SCNBoxToSphereMapping.lengthSegmentCount = 16;
+    SCNBoxToSphereMapping.widthSegmentCount = 8;
+    SCNBoxToSphereMapping.heightSegmentCount = 8;
+    SCNBoxToSphereMapping.lengthSegmentCount = 8;
     
     //SCNBox automatically recreates its set of geometry elements depending on how many materials you assign
     //(that way it doesn't need six draw calls to render if it doesn't have six materials).
@@ -220,7 +241,6 @@
         
         float SphereX = x*sqrt(1-pow(y,2)/2.0f-pow(z,2)/2.0f + pow(y*z,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
         float SphereY = y*sqrt(1-pow(z,2)/2.0f-pow(x,2)/2.0f + pow(x*z,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
-
         float SphereZ = z*sqrt(1-pow(x,2)/2.0f-pow(y,2)/2.0f + pow(y*x,2)/3.0f) * SCNBoxToSphereMapping.width / 2.0f;
 
         
@@ -291,7 +311,7 @@
     NSLog(@"slider value = %f", sender.value);
     
 
-    PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value, 2.0f*sender.value, 0.6f*sender.value)];
+    PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value*2, 2.0f*sender.value*2, 0.6f*sender.value*2)];
 }
 
 /*

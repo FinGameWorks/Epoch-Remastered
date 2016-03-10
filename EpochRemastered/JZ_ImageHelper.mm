@@ -292,4 +292,33 @@ void createCubeMapFace(const cv::Mat &in, cv::Mat &face,int faceId = 0, const in
     return newImage;
 }
 
+#pragma mark - Draw Debug Text On UIImage
++(UIImage*) drawText:(NSString*) text
+            fontSize:(float)fontSize
+             inImage:(UIImage*)  image
+             atPoint:(CGPoint)   point
+{
+    UIGraphicsBeginImageContextWithOptions(image.size, YES, 0.0f);
+    [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
+    CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
+    [[UIColor whiteColor] set];
+    
+    UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
+    if([text respondsToSelector:@selector(drawInRect:withAttributes:)])
+    {
+        //iOS 7
+        NSDictionary *att = @{NSFontAttributeName:font};
+        [text drawInRect:rect withAttributes:att];
+    }
+    else
+    {
+        //legacy support
+        [text drawInRect:CGRectIntegral(rect) withFont:font];
+    }
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 @end

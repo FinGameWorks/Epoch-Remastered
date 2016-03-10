@@ -33,6 +33,12 @@
 
 - (UIImage *)imageRotatedByDegrees:(UIImage*)oldImage deg:(CGFloat)degrees;
 
+#pragma mark - Draw Debug Text On UIImage
++(UIImage*) drawText:(NSString*) text
+            fontSize:(float)fontSize
+             inImage:(UIImage*)  image
+             atPoint:(CGPoint)   point;
+
 #pragma mark - Share Instance
 + (id)sharedManager;
 

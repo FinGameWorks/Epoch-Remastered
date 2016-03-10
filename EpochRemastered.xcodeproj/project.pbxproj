@@ -18,6 +18,18 @@
 		0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */; };
 		0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */; };
 		0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */; };
+		0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCB81C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h */; };
+		0D7AFCBB1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCB91C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m */; };
+		0D7AFCBE1C91F95400FC93C8 /* JZ_Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCBC1C91F95300FC93C8 /* JZ_Player.h */; };
+		0D7AFCBF1C91F95400FC93C8 /* JZ_Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCBD1C91F95300FC93C8 /* JZ_Player.m */; };
+		0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCC01C91F96B00FC93C8 /* JZ_MainPlayer.h */; };
+		0D7AFCC31C91F96B00FC93C8 /* JZ_MainPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCC11C91F96B00FC93C8 /* JZ_MainPlayer.m */; };
+		0D7AFCC51C9201C100FC93C8 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFCC41C9201C100FC93C8 /* GPUImage.framework */; };
+		0D7AFCC61C9201CE00FC93C8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC991C8FFD6900FC93C8 /* CoreMedia.framework */; };
+		0D7AFCC71C9201D400FC93C8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC9B1C8FFD6F00FC93C8 /* CoreVideo.framework */; };
+		0D7AFCC91C9201DA00FC93C8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFCC81C9201DA00FC93C8 /* OpenGLES.framework */; };
+		0D7AFCCA1C9201E100FC93C8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC8D1C8FFC7300FC93C8 /* AVFoundation.framework */; };
+		0D7AFCCB1C9201E600FC93C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC9D1C8FFD7600FC93C8 /* QuartzCore.framework */; };
 		0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE5F1C8DE6C100FFE0E2 /* main.m */; };
 		0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE621C8DE6C100FFE0E2 /* AppDelegate.m */; };
 		0D92BE651C8DE6C100FFE0E2 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D92BE641C8DE6C100FFE0E2 /* art.scnassets */; };
@@ -127,6 +139,14 @@
 		0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_PlanetSCNNode.m; sourceTree = "<group>"; };
 		0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_Skybox.h; sourceTree = "<group>"; };
 		0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JZ_Skybox.mm; sourceTree = "<group>"; };
+		0D7AFCB81C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_CameraPostProcessing.h; sourceTree = "<group>"; };
+		0D7AFCB91C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_CameraPostProcessing.m; sourceTree = "<group>"; };
+		0D7AFCBC1C91F95300FC93C8 /* JZ_Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_Player.h; sourceTree = "<group>"; };
+		0D7AFCBD1C91F95300FC93C8 /* JZ_Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_Player.m; sourceTree = "<group>"; };
+		0D7AFCC01C91F96B00FC93C8 /* JZ_MainPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_MainPlayer.h; sourceTree = "<group>"; };
+		0D7AFCC11C91F96B00FC93C8 /* JZ_MainPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_MainPlayer.m; sourceTree = "<group>"; };
+		0D7AFCC41C9201C100FC93C8 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
+		0D7AFCC81C9201DA00FC93C8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0D92BE5B1C8DE6C100FFE0E2 /* EpochRemastered.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpochRemastered.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D92BE5F1C8DE6C100FFE0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0D92BE611C8DE6C100FFE0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -235,10 +255,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7AFCCB1C9201E600FC93C8 /* QuartzCore.framework in Frameworks */,
+				0D7AFCCA1C9201E100FC93C8 /* AVFoundation.framework in Frameworks */,
+				0D7AFCC91C9201DA00FC93C8 /* OpenGLES.framework in Frameworks */,
+				0D7AFCC71C9201D400FC93C8 /* CoreVideo.framework in Frameworks */,
+				0D7AFCC61C9201CE00FC93C8 /* CoreMedia.framework in Frameworks */,
 				0D7AFC811C8FF08200FC93C8 /* opencv2.framework in Frameworks */,
 				0D7AFC7B1C8EAAA800FC93C8 /* SceneKit.framework in Frameworks */,
 				0D7AFC791C8E0A0B00FC93C8 /* libstdc++.tbd in Frameworks */,
 				0DDF9A371C8DF9ED0050D471 /* libc++.tbd in Frameworks */,
+				0D7AFCC51C9201C100FC93C8 /* GPUImage.framework in Frameworks */,
 				0DDF9A351C8DF9D40050D471 /* liblibnoise.a in Frameworks */,
 				0D92BE941C8DE87600FFE0E2 /* ModelIO.framework in Frameworks */,
 			);
@@ -284,6 +310,12 @@
 				0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */,
 				0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */,
 				0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */,
+				0D7AFCB81C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h */,
+				0D7AFCB91C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m */,
+				0D7AFCBC1C91F95300FC93C8 /* JZ_Player.h */,
+				0D7AFCBD1C91F95300FC93C8 /* JZ_Player.m */,
+				0D7AFCC01C91F96B00FC93C8 /* JZ_MainPlayer.h */,
+				0D7AFCC11C91F96B00FC93C8 /* JZ_MainPlayer.m */,
 			);
 			name = Universe;
 			sourceTree = "<group>";
@@ -291,6 +323,8 @@
 		0D92BE521C8DE6C100FFE0E2 = {
 			isa = PBXGroup;
 			children = (
+				0D7AFCC81C9201DA00FC93C8 /* OpenGLES.framework */,
+				0D7AFCC41C9201C100FC93C8 /* GPUImage.framework */,
 				0D7AFC9F1C8FFD7C00FC93C8 /* UIKit.framework */,
 				0D7AFC9D1C8FFD7600FC93C8 /* QuartzCore.framework */,
 				0D7AFC9B1C8FFD6F00FC93C8 /* CoreVideo.framework */,
@@ -485,7 +519,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
+				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
+				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
 				0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */,
+				0D7AFCBE1C91F95400FC93C8 /* JZ_Player.h in Headers */,
 				0D7AFCB11C91E90600FC93C8 /* JZ_PlanetSCNNode.h in Headers */,
 				0D7AFC8C1C8FFA9000FC93C8 /* EpochRematered.pch in Headers */,
 			);
@@ -651,9 +688,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7AFCBF1C91F95400FC93C8 /* JZ_Player.m in Sources */,
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
 				0D92BE681C8DE6C100FFE0E2 /* GameViewController.m in Sources */,
+				0D7AFCC31C91F96B00FC93C8 /* JZ_MainPlayer.m in Sources */,
 				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,
+				0D7AFCBB1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m in Sources */,
 				0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
 				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,

@@ -8,9 +8,10 @@
 
 #define SubMesh 64
 #define PamoMapHeight 1024
-#define isDebug YES
+#define isDebug NO
 
 #import "NoiseDebuggerViewController.h"
+#import "GPUImage/GPUImage.h"
 
 //Mesh Generation
 #import <SceneKit/SceneKit.h>
@@ -25,6 +26,7 @@
 #include "noiseutils.h"
 
 #import "JZ_Skybox.h"
+#import "JZ_Player.h"
 
 @interface NoiseDebuggerViewController ()
 @property (strong, nonatomic) UIImage *UIColorImage;
@@ -45,7 +47,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //清空 NSDocumentDirectory
+    
     [self EmptySandbox];
+    
     
     [RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
@@ -172,6 +176,13 @@
         PlanetSceneKitView.debugOptions = SCNDebugOptionShowWireframe;
 
     }
+    
+    JZ_Player *player = [JZ_Player node];
+    player.ShipSceneName = @"ship.scn";
+    [player initShip];
+    [PlanetSceneKitView.scene.rootNode addChildNode:player];
+    player.position = SCNVector3Make(230, 0, 0);
+    
 //    SCNSphere *PlanetSphere = [SCNSphere sphereWithRadius:30.0f];
 //    PlanetSphere.geodesic = NO;
 //    
@@ -305,9 +316,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }else if ((int)round(z*SubMesh) == -SubMesh)
         {
@@ -327,9 +338,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }else if ((int)round(x*SubMesh) == SubMesh)
         {
@@ -349,9 +360,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }else if ((int)round(x*SubMesh) == -SubMesh)
         {
@@ -371,9 +382,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }else if ((int)round(y*SubMesh) == -SubMesh)
         {
@@ -393,9 +404,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }else if ((int)round(y*SubMesh) == SubMesh)
         {
@@ -415,9 +426,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.2-GreyScale*0.2);
-            SphereY = SphereY * (1.2-GreyScale*0.2);
-            SphereZ = SphereZ * (1.2-GreyScale*0.2);
+            SphereX = SphereX * (1.20-GreyScale*0.20);
+            SphereY = SphereY * (1.20-GreyScale*0.20);
+            SphereZ = SphereZ * (1.20-GreyScale*0.20);
             
         }
 

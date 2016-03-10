@@ -321,4 +321,30 @@ void createCubeMapFace(const cv::Mat &in, cv::Mat &face,int faceId = 0, const in
     return newImage;
 }
 
+#pragma mark - Get Pixel from UIImage
+// P:point range 0.0-1.0 for both x and y.
+- (UIColor*)colorFromImage:(UIImage*)image sampledAtPoint:(CGPoint)p {
+    CGImageRef cgImage = [image CGImage];
+    CGDataProviderRef provider = CGImageGetDataProvider(cgImage);
+    CFDataRef bitmapData = CGDataProviderCopyData(provider);
+    const UInt8* data = CFDataGetBytePtr(bitmapData);
+    size_t bytesPerRow = CGImageGetBytesPerRow(cgImage);
+    size_t width = CGImageGetWidth(cgImage);
+    size_t height = CGImageGetHeight(cgImage);
+    int col = p.x*(width-1);
+    int row = p.y*(height-1);
+    const UInt8* pixel = data + row*bytesPerRow+col*4;
+    UIColor* returnColor = [UIColor colorWithRed:pixel[0]/255. green:pixel[1]/255. blue:pixel[2]/255. alpha:1.0];
+    CFRelease(bitmapData);
+    return returnColor;
+}
+
+#pragma mark - Get Grey Scale from Pixel UIColor
+- (CGFloat)greyScaleFromUIColor:(UIColor *)color
+{
+    CGFloat white = 0.0, alpha =0.0;
+    [color getWhite:&white alpha:&alpha];
+    return white;
+}
+
 @end

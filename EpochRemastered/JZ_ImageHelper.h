@@ -39,6 +39,12 @@
              inImage:(UIImage*)  image
              atPoint:(CGPoint)   point;
 
+#pragma mark - Get Pixel from UIImage
+- (UIColor*)colorFromImage:(UIImage*)image sampledAtPoint:(CGPoint)p;
+
+#pragma mark - Get Grey Scale from Pixel UIColor
+- (CGFloat)greyScaleFromUIColor:(UIColor *)color;
+
 #pragma mark - Share Instance
 + (id)sharedManager;
 

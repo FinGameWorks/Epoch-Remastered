@@ -14,6 +14,10 @@
 		0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFC871C8FF3D400FC93C8 /* JZ_ImageHelper.h */; };
 		0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFC881C8FF3D400FC93C8 /* JZ_ImageHelper.mm */; };
 		0D7AFC8C1C8FFA9000FC93C8 /* EpochRematered.pch in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFC8B1C8FFA9000FC93C8 /* EpochRematered.pch */; };
+		0D7AFCB11C91E90600FC93C8 /* JZ_PlanetSCNNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */; };
+		0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */; };
+		0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */; };
+		0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */; };
 		0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE5F1C8DE6C100FFE0E2 /* main.m */; };
 		0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE621C8DE6C100FFE0E2 /* AppDelegate.m */; };
 		0D92BE651C8DE6C100FFE0E2 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D92BE641C8DE6C100FFE0E2 /* art.scnassets */; };
@@ -119,6 +123,10 @@
 		0D7AFC9B1C8FFD6F00FC93C8 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		0D7AFC9D1C8FFD7600FC93C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0D7AFC9F1C8FFD7C00FC93C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_PlanetSCNNode.h; sourceTree = "<group>"; };
+		0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_PlanetSCNNode.m; sourceTree = "<group>"; };
+		0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_Skybox.h; sourceTree = "<group>"; };
+		0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JZ_Skybox.mm; sourceTree = "<group>"; };
 		0D92BE5B1C8DE6C100FFE0E2 /* EpochRemastered.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpochRemastered.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D92BE5F1C8DE6C100FFE0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0D92BE611C8DE6C100FFE0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -269,6 +277,17 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		0D7AFCB31C91E90B00FC93C8 /* Universe */ = {
+			isa = PBXGroup;
+			children = (
+				0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */,
+				0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */,
+				0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */,
+				0D7AFCB51C91EA2800FC93C8 /* JZ_Skybox.mm */,
+			);
+			name = Universe;
+			sourceTree = "<group>";
+		};
 		0D92BE521C8DE6C100FFE0E2 = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +336,7 @@
 				0D92BE671C8DE6C100FFE0E2 /* GameViewController.m */,
 				0DDF99D31C8DF2720050D471 /* NoiseDebuggerViewController.h */,
 				0DDF99D41C8DF2720050D471 /* NoiseDebuggerViewController.mm */,
+				0D7AFCB31C91E90B00FC93C8 /* Universe */,
 				0D7AFC861C8FF3B100FC93C8 /* Utilities */,
 				0D92BE691C8DE6C100FFE0E2 /* Main.storyboard */,
 				0D92BE6C1C8DE6C100FFE0E2 /* Assets.xcassets */,
@@ -464,7 +484,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
 				0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */,
+				0D7AFCB11C91E90600FC93C8 /* JZ_PlanetSCNNode.h in Headers */,
 				0D7AFC8C1C8FFA9000FC93C8 /* EpochRematered.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,8 +653,10 @@
 			files = (
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
 				0D92BE681C8DE6C100FFE0E2 /* GameViewController.m in Sources */,
+				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,
 				0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
+				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,
 				0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -838,6 +862,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.EpochRemastered;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -859,6 +884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.EpochRemastered;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

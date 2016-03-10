@@ -8,7 +8,7 @@
 
 #define SubMesh 64
 #define PamoMapHeight 1024
-#define isDebug NO
+#define isDebug YES
 
 #import "NoiseDebuggerViewController.h"
 
@@ -23,6 +23,8 @@
 //NoiseLib
 #import "noise.h"
 #include "noiseutils.h"
+
+#import "JZ_Skybox.h"
 
 @interface NoiseDebuggerViewController ()
 @property (strong, nonatomic) UIImage *UIColorImage;
@@ -159,6 +161,8 @@
 {
     PlanetSceneKitView.scene = [SCNScene scene];
     
+    [[JZ_Skybox sharedManager] SkyboxInScene:PlanetSceneKitView.scene];
+    
     PlanetSceneKitView.allowsCameraControl = YES;
     PlanetSceneKitView.showsStatistics = YES;
     PlanetSceneKitView.backgroundColor = [UIColor blackColor];
@@ -178,6 +182,9 @@
     // create and add a camera to the scene
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
+//    cameraNode.camera.zNear = 0.000000001f;
+//    cameraNode.camera.zFar = 9999999999.0f;
+    cameraNode.camera.automaticallyAdjustsZRange = YES;
     [PlanetSceneKitView.scene.rootNode addChildNode:cameraNode];
     
     // place the camera
@@ -198,7 +205,7 @@
     ambientLightNode.light.color = [UIColor darkGrayColor];
     [PlanetSceneKitView.scene.rootNode addChildNode:ambientLightNode];
     
-    SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:60.0f height:60.0f length:60.0f chamferRadius:0.0f];
+    SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:200.0f height:200.0f length:200.0f chamferRadius:0.0f];
     SCNBoxToSphereMapping.widthSegmentCount = SubMesh;
     SCNBoxToSphereMapping.heightSegmentCount = SubMesh;
     SCNBoxToSphereMapping.lengthSegmentCount = SubMesh;

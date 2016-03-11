@@ -27,6 +27,7 @@
 
 #import "JZ_Skybox.h"
 #import "JZ_Player.h"
+#import "JZ_Atomsphere.h"
 
 @interface NoiseDebuggerViewController () <SCNSceneRendererDelegate>
 @property (strong, nonatomic) UIImage *UIColorImage;
@@ -229,6 +230,7 @@
     player.ShipSceneName = @"ship.scn";
     [player initShip];
     [PlanetSceneKitView.scene.rootNode addChildNode:player];
+    player.geometry.firstMaterial.reflective.contents = PlanetSceneKitView.scene.background.contents;
     player.position = SCNVector3Make(230, 0, 0);
     
 //    SCNSphere *PlanetSphere = [SCNSphere sphereWithRadius:30.0f];
@@ -239,6 +241,9 @@
 //
     
     // create and add a camera to the scene
+    //MDLCAMER CANNOT MAKE IT TO SCNCAMERA WITH chromaticAberration, TOTALLY USELESS!!!!!!!!!!!!!!!!!!!!!!
+    //AND PBR MATERIALs IN MODELIO ALSO DONT SUPPORT SCENEKIT, WTF
+    
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
 //    cameraNode.camera.zNear = 0.000000001f;
@@ -248,6 +253,13 @@
     
     // place the camera
     cameraNode.position = SCNVector3Make(0, 0, 100);
+    
+//    
+//    //atomsphere
+//    JZ_Atomsphere *atmosphere = [JZ_Atomsphere node];
+//    atmosphere.sphereRadius = 200.0f;
+//    [atmosphere initAtomsphere];
+//    [PlanetSceneKitView.scene.rootNode addChildNode:atmosphere];
     
     // create and add a light to the scene
     SCNNode *lightNode = [SCNNode node];

@@ -5,10 +5,14 @@
 * [x] Cubemap mapping to Sphere  
 * [ ] Procedurally Skybox (using noise)
 * [ ] Runtime SplatMap Generation
-* [ ] ColorMap Based On HeightMap
+* [x] ColorMap Based On HeightMap
 * [ ] Terrain Shader
 * [ ] HeightMap to Mesh Generation
 * [ ] Voxels? Or Triangles
+* [ ] QuadTree
+* [ ] Advanced Texture Mapping
+* [ ] Atomsphere & Ocean Shader
+* [ ] Object Spawing
 
 # Download them before build
 Using OpenCV Framework  

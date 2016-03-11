@@ -48,6 +48,7 @@
 - (void)SkyboxInScene:(SCNScene *)scene
 {
     scene.background.contents = [self SkyboxArray];
+
 }
 #pragma mark - make a array of Cubemaps(height Cubemaps, color Cubemaps, etc) using given parameter
 - (NSMutableArray *)NoiseCubemapWithSeed:(SCNVector3)ParameterVector3
@@ -93,7 +94,6 @@
     NSMutableArray * ColorMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIColorImage];
     
     return ColorMapImagesArray;
-    
 }
 
 #pragma mark - make a array of SCNMaterials using given Pano Map

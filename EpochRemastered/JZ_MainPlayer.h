@@ -11,8 +11,8 @@
 
 @interface JZ_MainPlayer : JZ_Player
 
-- (void)Update;
-- (void)FixedUpdate;
+- (void)LogicUpdate;
+- (void)LogicFixedUpdate;
 
 - (void)initShip;
 

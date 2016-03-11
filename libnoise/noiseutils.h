@@ -1165,6 +1165,9 @@ namespace noise
         /// method to specify the image, then call the SetDestFilename()
         /// method to specify the name of the file to write.
         void WriteDestFile ();
+        
+        
+        uint8_t *WriteTo_UNIT8_Array ();
 
       protected:
 

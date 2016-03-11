@@ -12,6 +12,9 @@
 
 @property (nonatomic,strong) NSString *ShipSceneName;
 
+- (void)LogicUpdate;
+- (void)LogicFixedUpdate;
+
 - (void)initShip;
 
 @end

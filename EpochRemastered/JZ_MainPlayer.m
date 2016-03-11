@@ -11,10 +11,10 @@
 @implementation JZ_MainPlayer
 
 
-- (void)Update
+- (void)LogicUpdate
 {
 }
-- (void)FixedUpdate
+- (void)LogicFixedUpdate
 {
 }
 - (void)initShip

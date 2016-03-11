@@ -28,7 +28,7 @@
 #import "JZ_Skybox.h"
 #import "JZ_Player.h"
 
-@interface NoiseDebuggerViewController ()
+@interface NoiseDebuggerViewController () <SCNSceneRendererDelegate>
 @property (strong, nonatomic) UIImage *UIColorImage;
 @property (strong, nonatomic) UIImage *UIHeightImage;
 
@@ -55,6 +55,7 @@
     
     [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
     
+    PlanetSceneKitView.delegate = self;
     
 }
 
@@ -74,7 +75,7 @@
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
     heightMapBuilder.Build ();
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     utils::RendererImage HeightRenderer;
     utils::Image HeightImage;
@@ -85,12 +86,26 @@
     HeightRenderer.AddGradientPoint ( 1.0000, utils::Color (0, 0, 0, 255)); // Top
     HeightRenderer.Render ();
     
-    NSString *basePath = [NSString stringWithFormat:@"%@/HeightMap.bmp",paths.firstObject];
+    //NSString *basePath = [NSString stringWithFormat:@"%@/HeightMap.bmp",paths.firstObject];
     utils::WriterBMP writer;
     writer.SetSourceImage (HeightImage);
-    std::string stdbasePath = *new std::string([basePath UTF8String]);
-    writer.SetDestFilename (stdbasePath);
-    writer.WriteDestFile ();
+    //std::string stdbasePath = *new std::string([basePath UTF8String]);
+    //writer.SetDestFilename (stdbasePath);
+//    //writer.WriteDestFile ();
+//    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
+//    // create the bitmap context:
+//    const size_t BitsPerComponent = 8;
+//    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
+//    // create the image:
+//    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
+//    UIColorImage = [[UIImage alloc] initWithCGImage:toCGImage];
+    UIHeightImage = [self imageFromWriter:writer];
+    
+
+    
+    
 
     utils::RendererImage ColorRenderer;
     utils::Image ColorImage;
@@ -110,21 +125,54 @@
     //    renderer.SetLightBrightness (2.0);
     ColorRenderer.Render ();
     
-    basePath = [NSString stringWithFormat:@"%@/ColorMap.bmp",paths.firstObject];
+    //basePath = [NSString stringWithFormat:@"%@/ColorMap.bmp",paths.firstObject];
     writer.SetSourceImage (ColorImage);
-    stdbasePath = *new std::string([basePath UTF8String]);
-    writer.SetDestFilename (stdbasePath);
-    writer.WriteDestFile ();
+    //stdbasePath = *new std::string([basePath UTF8String]);
+    //writer.SetDestFilename (stdbasePath);
+//    //writer.WriteDestFile ();
+//    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
+//    // create the bitmap context:
+//    const size_t BitsPerComponent = 8;
+//    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
+//    // create the image:
+//    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
+    UIColorImage = [self imageFromWriter:writer];
     
-    UIColorImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"ColorMap.bmp"]];
+    
+    
+    
+    //UIColorImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"ColorMap.bmp"]];
 
-    UIHeightImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"HeightMap.bmp"]];
+    //UIHeightImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"HeightMap.bmp"]];
     
     NSMutableArray * ColorMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIColorImage];
     NSMutableArray * HeightMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIHeightImage];
     
     return [NSMutableArray arrayWithObjects:ColorMapImagesArray,HeightMapImagesArray, nil];
     
+}
+
+- (UIImage *)imageFromWriter:(utils::WriterBMP)writer
+{
+    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
+    // create the bitmap context:
+    const size_t BitsPerComponent = 8;
+    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
+    // create the image:
+    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
+    
+    // remember to cleanup your resources! :)
+    free(pixelData);
+    
+    UIImage *image = [[UIImage alloc] initWithCGImage:toCGImage];
+    
+    CGImageRelease(toCGImage);
+    
+    return image;
 }
 
 #pragma mark - make a array of SCNMaterials using given Pano Map
@@ -502,6 +550,20 @@
 
     PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value*2, 2.0f*sender.value*2, 0.6f*sender.value*2)];
 }
+
+#pragma mark - Update Method
+- (void)renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time
+{
+    [PlanetSceneKitView.scene.rootNode enumerateChildNodesUsingBlock:^(SCNNode *child,
+                                                                      BOOL *stop)
+    {
+        if ([child respondsToSelector:@selector(LogicUpdate)])
+        {
+            [child performSelector:@selector(LogicUpdate)];
+        }
+    }];
+}
+
 
 /*
 #pragma mark - Navigation

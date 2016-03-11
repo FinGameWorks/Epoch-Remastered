@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D3856771C934AB50044399A /* JZ_ControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856751C934AB50044399A /* JZ_ControlView.h */; };
+		0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856761C934AB50044399A /* JZ_ControlView.m */; };
+		0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856791C934C9E0044399A /* JZ_HUDNode.h */; };
+		0D38567C1C934C9E0044399A /* JZ_HUDNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D38567A1C934C9E0044399A /* JZ_HUDNode.m */; };
+		0D38567E1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader in Resources */ = {isa = PBXBuildFile; fileRef = 0D38567D1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader */; };
 		0D7AFC771C8E086C00FC93C8 /* noiseutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */; };
 		0D7AFC791C8E0A0B00FC93C8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */; };
 		0D7AFC7B1C8EAAA800FC93C8 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC7A1C8EAAA800FC93C8 /* SceneKit.framework */; };
@@ -122,6 +127,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D3856751C934AB50044399A /* JZ_ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_ControlView.h; sourceTree = "<group>"; };
+		0D3856761C934AB50044399A /* JZ_ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_ControlView.m; sourceTree = "<group>"; };
+		0D3856791C934C9E0044399A /* JZ_HUDNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_HUDNode.h; sourceTree = "<group>"; };
+		0D38567A1C934C9E0044399A /* JZ_HUDNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_HUDNode.m; sourceTree = "<group>"; };
+		0D38567D1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCNShaderModifierEntryPointLightingModel_Toon.shader; sourceTree = "<group>"; };
 		0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noiseutils.cpp; sourceTree = "<group>"; };
 		0D7AFC761C8E086C00FC93C8 /* noiseutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noiseutils.h; sourceTree = "<group>"; };
 		0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -386,6 +396,11 @@
 				0D92BE671C8DE6C100FFE0E2 /* GameViewController.m */,
 				0DDF99D31C8DF2720050D471 /* NoiseDebuggerViewController.h */,
 				0DDF99D41C8DF2720050D471 /* NoiseDebuggerViewController.mm */,
+				0D38567D1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader */,
+				0D3856791C934C9E0044399A /* JZ_HUDNode.h */,
+				0D38567A1C934C9E0044399A /* JZ_HUDNode.m */,
+				0D3856751C934AB50044399A /* JZ_ControlView.h */,
+				0D3856761C934AB50044399A /* JZ_ControlView.m */,
 				0D7AFCB31C91E90B00FC93C8 /* Universe */,
 				0D7AFC861C8FF3B100FC93C8 /* Utilities */,
 				0D92BE691C8DE6C100FFE0E2 /* Main.storyboard */,
@@ -540,8 +555,10 @@
 				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
 				0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */,
 				0D7AFCBE1C91F95400FC93C8 /* JZ_Player.h in Headers */,
+				0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */,
 				0D7AFCB11C91E90600FC93C8 /* JZ_PlanetSCNNode.h in Headers */,
 				0D7AFC8C1C8FFA9000FC93C8 /* EpochRematered.pch in Headers */,
+				0D3856771C934AB50044399A /* JZ_ControlView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +696,7 @@
 			files = (
 				0D92BE651C8DE6C100FFE0E2 /* art.scnassets in Resources */,
 				0D92BE701C8DE6C100FFE0E2 /* LaunchScreen.storyboard in Resources */,
+				0D38567E1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader in Resources */,
 				0D92BE6D1C8DE6C100FFE0E2 /* Assets.xcassets in Resources */,
 				0D7AFCDB1C9301F100FC93C8 /* PlanetShader.vert in Resources */,
 				0D92BE6B1C8DE6C100FFE0E2 /* Main.storyboard in Resources */,
@@ -708,7 +726,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D7AFCBF1C91F95400FC93C8 /* JZ_Player.m in Sources */,
+				0D38567C1C934C9E0044399A /* JZ_HUDNode.m in Sources */,
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
+				0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */,
 				0D92BE681C8DE6C100FFE0E2 /* GameViewController.m in Sources */,
 				0D7AFCC31C91F96B00FC93C8 /* JZ_MainPlayer.m in Sources */,
 				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,

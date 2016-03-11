@@ -6,7 +6,7 @@
 //  Copyright © 2016年 JustZht. All rights reserved.
 //
 
-#define SubMesh 64
+#define SubMesh 72
 #define PamoMapHeight 1024
 #define isDebug NO
 
@@ -29,9 +29,12 @@
 #import "JZ_Player.h"
 #import "JZ_Atomsphere.h"
 
+#import "JZ_ControlView.h"
+
 @interface NoiseDebuggerViewController () <SCNSceneRendererDelegate>
 @property (strong, nonatomic) UIImage *UIColorImage;
 @property (strong, nonatomic) UIImage *UIHeightImage;
+@property (strong, nonatomic) UIImage *UINormalImage;
 
 @property (weak, nonatomic) IBOutlet SCNView *PlanetSceneKitView;
 
@@ -40,7 +43,7 @@
 @end
 
 @implementation NoiseDebuggerViewController
-@synthesize UIColorImage,UIHeightImage,PlanetSceneKitView,PlanetNode;
+@synthesize UIColorImage,UIHeightImage,UINormalImage,PlanetSceneKitView,PlanetNode;
 @synthesize RandomSeedSlider;
 
 - (void)viewDidLoad
@@ -57,6 +60,9 @@
     [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
     
     PlanetSceneKitView.delegate = self;
+    
+    JZ_ControlView *controlView = [[JZ_ControlView alloc] initWithFrame:self.view.frame];
+    //[self.view addSubview:controlView];
     
 }
 
@@ -75,9 +81,7 @@
     heightMapBuilder.SetDestSize (PamoMapHeight*2, PamoMapHeight);
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
     heightMapBuilder.Build ();
-    
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
+
     utils::RendererImage HeightRenderer;
     utils::Image HeightImage;
     HeightRenderer.SetSourceNoiseMap (heightMap);
@@ -86,26 +90,22 @@
     HeightRenderer.AddGradientPoint ( -1.0000, utils::Color (255, 255, 255, 255)); // Bottom
     HeightRenderer.AddGradientPoint ( 1.0000, utils::Color (0, 0, 0, 255)); // Top
     HeightRenderer.Render ();
-    
-    //NSString *basePath = [NSString stringWithFormat:@"%@/HeightMap.bmp",paths.firstObject];
     utils::WriterBMP writer;
     writer.SetSourceImage (HeightImage);
-    //std::string stdbasePath = *new std::string([basePath UTF8String]);
-    //writer.SetDestFilename (stdbasePath);
-//    //writer.WriteDestFile ();
-//    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
-//    // create the bitmap context:
-//    const size_t BitsPerComponent = 8;
-//    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
-//    // create the image:
-//    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
-//    UIColorImage = [[UIImage alloc] initWithCGImage:toCGImage];
     UIHeightImage = [self imageFromWriter:writer];
     
-
     
+    
+    utils::RendererNormalMap NormalRender;
+    utils::Image NormalImage;
+    NormalImage.SetSize(PamoMapHeight*2, PamoMapHeight);
+    NormalRender.SetSourceNoiseMap(heightMap);
+    NormalRender.SetDestImage(NormalImage);
+    //NormalRender.EnableWrap();
+    NormalRender.SetBumpHeight(2.0);
+    NormalRender.Render();
+    writer.SetSourceImage (NormalImage);
+    UINormalImage = [self imageFromWriter:writer];
     
 
     utils::RendererImage ColorRenderer;
@@ -126,32 +126,14 @@
     //    renderer.SetLightBrightness (2.0);
     ColorRenderer.Render ();
     
-    //basePath = [NSString stringWithFormat:@"%@/ColorMap.bmp",paths.firstObject];
     writer.SetSourceImage (ColorImage);
-    //stdbasePath = *new std::string([basePath UTF8String]);
-    //writer.SetDestFilename (stdbasePath);
-//    //writer.WriteDestFile ();
-//    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
-//    // create the bitmap context:
-//    const size_t BitsPerComponent = 8;
-//    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
-//    // create the image:
-//    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
     UIColorImage = [self imageFromWriter:writer];
-    
-    
-    
-    
-    //UIColorImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"ColorMap.bmp"]];
-
-    //UIHeightImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"HeightMap.bmp"]];
     
     NSMutableArray * ColorMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIColorImage];
     NSMutableArray * HeightMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIHeightImage];
+    NSMutableArray * NormalMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UINormalImage];
     
-    return [NSMutableArray arrayWithObjects:ColorMapImagesArray,HeightMapImagesArray, nil];
+    return [NSMutableArray arrayWithObjects:ColorMapImagesArray,HeightMapImagesArray,NormalMapImagesArray, nil];
     
 }
 
@@ -267,7 +249,7 @@
     lightNode.light.type = SCNLightTypeDirectional;
     lightNode.eulerAngles = SCNVector3Make(45.0f, 45.0f, 45.0f);
     lightNode.position = SCNVector3Make(10, 10, -10);
-    //[PlanetSceneKitView.scene.rootNode addChildNode:lightNode];
+    [PlanetSceneKitView.scene.rootNode addChildNode:lightNode];
     
     // create and add an ambient light to the scene
     SCNNode *ambientLightNode = [SCNNode node];
@@ -288,6 +270,7 @@
     {
         SCNMaterial *mat = [SCNMaterial material];
         mat.diffuse.contents = [[CubeMappingImages objectAtIndex:0] objectAtIndex:i];
+        mat.normal.contents = [[CubeMappingImages objectAtIndex:2] objectAtIndex:i];
         [Mats addObject:mat];
     }
     SCNBoxToSphereMapping.materials = Mats;
@@ -376,9 +359,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }else if ((int)round(z*SubMesh) == -SubMesh)
         {
@@ -398,9 +381,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }else if ((int)round(x*SubMesh) == SubMesh)
         {
@@ -420,9 +403,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }else if ((int)round(x*SubMesh) == -SubMesh)
         {
@@ -442,9 +425,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }else if ((int)round(y*SubMesh) == -SubMesh)
         {
@@ -464,9 +447,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }else if ((int)round(y*SubMesh) == SubMesh)
         {
@@ -486,9 +469,9 @@
             color = [[JZ_ImageHelper sharedManager] colorFromImage:OneFaceImage sampledAtPoint:TextureMappingPoint];
             GreyScale = [[JZ_ImageHelper sharedManager] greyScaleFromUIColor:color];
             
-            SphereX = SphereX * (1.20-GreyScale*0.20);
-            SphereY = SphereY * (1.20-GreyScale*0.20);
-            SphereZ = SphereZ * (1.20-GreyScale*0.20);
+            SphereX = SphereX * (1.10-GreyScale*0.10);
+            SphereY = SphereY * (1.10-GreyScale*0.10);
+            SphereZ = SphereZ * (1.10-GreyScale*0.10);
             
         }
 
@@ -503,8 +486,6 @@
         //NSLog(@"SphereX:%f, SphereY:%f, SphereX:%f", SphereX, SphereY, SphereZ);
     }
     
-    
-    
     SCNGeometrySource *DeformedGeometrySource = [SCNGeometrySource geometrySourceWithVertices:vertices count:vectorCount];
     NSMutableArray *SCNGeometrySourceArray = [NSMutableArray arrayWithObject:DeformedGeometrySource];
     [SCNGeometrySourceArray addObject:[geometrySources objectAtIndex:2]];
@@ -514,11 +495,21 @@
     
     
     MDLMesh *DeformedGeometryUsingMDL = [MDLMesh meshWithSCNGeometry:DeformedGeometry];
-    [DeformedGeometryUsingMDL addNormalsWithAttributeNamed:MDLVertexAttributeNormal creaseThreshold:1.0f];
+    [DeformedGeometryUsingMDL addNormalsWithAttributeNamed:MDLVertexAttributeNormal creaseThreshold:0.2f];
     
     DeformedGeometry = [SCNGeometry geometryWithMDLMesh:DeformedGeometryUsingMDL];
     PlanetNode.geometry = DeformedGeometry;
     PlanetNode.geometry.materials = Mats;
+    
+
+
+    
+//    NSURL *ShaderURL = [[NSBundle mainBundle]
+//                                URLForResource:@"/SCNShaderModifierEntryPointLightingModel_Toon" withExtension:@"shader"];
+//    NSString *Shader = [[NSString alloc] initWithContentsOfURL:ShaderURL
+//                                                            encoding:NSUTF8StringEncoding
+//                                                               error:NULL];
+//    PlanetNode.geometry.firstMaterial.shaderModifiers = @{ SCNShaderModifierEntryPointLightingModel : Shader};
 
     
 }

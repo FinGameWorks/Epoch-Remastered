@@ -605,7 +605,7 @@ uint8_t *WriterBMP::WriteTo_UNIT8_Array (void)
             pixelData[offset] = pSource->red;
             pixelData[offset+1] = pSource->green;
             pixelData[offset+2] = pSource->blue; // blue
-            pixelData[offset+3] = pSource->alpha; // opaque
+            pixelData[offset+3] = UINT8_MAX; // opaque
 //            *pDest++ = pSource->blue ;
 //            *pDest++ = pSource->green;
 //            *pDest++ = pSource->red  ;

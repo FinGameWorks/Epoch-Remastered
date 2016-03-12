@@ -567,7 +567,7 @@ int WriterBMP::CalcWidthByteCount (int width) const
   return ((width * 3) + 3) & ~0x03;
 }
 
-uint8_t *WriterBMP::WriteTo_UNIT8_Array (void)
+uint8_t *WriterBMP::WriteTo_UNIT8_Array (bool Transprant)
 {
     if (m_pSourceImage == NULL)
     {
@@ -576,23 +576,6 @@ uint8_t *WriterBMP::WriteTo_UNIT8_Array (void)
     
     int width  = m_pSourceImage->GetWidth  ();
     int height = m_pSourceImage->GetHeight ();
-    
-    // The width of one line in the file must be aligned on a 4-byte boundary.
-    //int bufferSize = CalcWidthByteCount (width);
-    //int destSize   = bufferSize * height;
-    
-    //noise::uint8* pixelData = new noise::uint8[destSize];
-    
-//    noise::uint8* pLineBuffer = NULL;
-//    // Allocate a buffer to hold one horizontal line in the bitmap.
-//    try
-//    {
-//        pLineBuffer = new noise::uint8[bufferSize];
-//    }
-//    catch (...)
-//    {
-//        throw noise::ExceptionOutOfMemory ();
-//    }
     
     uint8_t *pixelData = new noise::uint8[width*height*4];
     
@@ -605,10 +588,13 @@ uint8_t *WriterBMP::WriteTo_UNIT8_Array (void)
             pixelData[offset] = pSource->red;
             pixelData[offset+1] = pSource->green;
             pixelData[offset+2] = pSource->blue; // blue
-            pixelData[offset+3] = UINT8_MAX; // opaque
-//            *pDest++ = pSource->blue ;
-//            *pDest++ = pSource->green;
-//            *pDest++ = pSource->red  ;
+            if (Transprant)
+            {
+                pixelData[offset+3] = pSource->alpha;
+            }else
+            {
+                pixelData[offset+3] = UINT8_MAX; // opaque
+            }
             ++pSource;
         }
     }

@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+//OpenCV stuff for Pamo to Cubemap transfrom
 #import "opencv2/opencv.hpp"
+
+// Noise Lib stuff for random noise map generation
+#include "noiseutils.h"
 
 @interface JZ_ImageHelper : NSObject
 
@@ -45,7 +50,14 @@
 #pragma mark - Get Grey Scale from Pixel UIColor
 - (CGFloat)greyScaleFromUIColor:(UIColor *)color;
 
+#pragma mark - Generate UIImage from Noise utils
+- (UIImage *)imageFromWriter:(utils::WriterBMP)writer
+                      height:(float)PamoHeight;
+
 #pragma mark - Share Instance
 + (id)sharedManager;
+
+
+
 
 @end

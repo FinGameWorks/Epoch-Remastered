@@ -347,4 +347,27 @@ void createCubeMapFace(const cv::Mat &in, cv::Mat &face,int faceId = 0, const in
     return white;
 }
 
+#pragma mark - Generate UIImage from Noise utils
+- (UIImage *)imageFromWriter:(utils::WriterBMP)writer
+                       height:(float)PamoHeight
+{
+    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array(false);
+    // create the bitmap context:
+    const size_t BitsPerComponent = 8;
+    const size_t BytesPerRow=((BitsPerComponent * PamoHeight*2) / 8) * 4;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoHeight*2, PamoHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
+    // create the image:
+    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
+    
+    // remember to cleanup your resources! :)
+    free(pixelData);
+    
+    UIImage *image = [[UIImage alloc] initWithCGImage:toCGImage];
+    
+    CGImageRelease(toCGImage);
+    
+    return image;
+}
+
 @end

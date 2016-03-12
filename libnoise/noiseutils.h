@@ -1167,7 +1167,7 @@ namespace noise
         void WriteDestFile ();
         
         
-        uint8_t *WriteTo_UNIT8_Array ();
+        uint8_t *WriteTo_UNIT8_Array (bool Transprant = false);
 
       protected:
 

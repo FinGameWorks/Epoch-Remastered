@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SceneKit/SceneKit.h>
 
 @interface JZ_ControlView : UIView
+
+@property (nonatomic) CGPoint JoystickTouchVector;
+@property (nonatomic) int speedSliderDirection;
 
 @end

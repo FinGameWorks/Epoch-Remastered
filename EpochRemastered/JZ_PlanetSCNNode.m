@@ -8,6 +8,24 @@
 
 #import "JZ_PlanetSCNNode.h"
 
+@interface JZ_PlanetSCNNode()
+
+@end
+
 @implementation JZ_PlanetSCNNode
+@synthesize planetRadius;
+
++ (instancetype) node
+{
+    JZ_PlanetSCNNode *newNode = [super node];
+    return newNode;
+}
+
+- (void)initPlanet
+{
+    
+}
+
+
 
 @end

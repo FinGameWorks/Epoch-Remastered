@@ -62,7 +62,7 @@
     PlanetSceneKitView.delegate = self;
     
     JZ_ControlView *controlView = [[JZ_ControlView alloc] initWithFrame:self.view.frame];
-    //[self.view addSubview:controlView];
+    [self.view addSubview:controlView];
     
 }
 
@@ -92,7 +92,9 @@
     HeightRenderer.Render ();
     utils::WriterBMP writer;
     writer.SetSourceImage (HeightImage);
-    UIHeightImage = [self imageFromWriter:writer];
+    UIHeightImage = [[JZ_ImageHelper sharedManager] imageFromWriter:writer
+                                                             height:PamoMapHeight];
+
     
     
     
@@ -105,7 +107,7 @@
     NormalRender.SetBumpHeight(2.0);
     NormalRender.Render();
     writer.SetSourceImage (NormalImage);
-    UINormalImage = [self imageFromWriter:writer];
+    UINormalImage = [[JZ_ImageHelper sharedManager] imageFromWriter:writer height:PamoMapHeight];
     
 
     utils::RendererImage ColorRenderer;
@@ -127,7 +129,8 @@
     ColorRenderer.Render ();
     
     writer.SetSourceImage (ColorImage);
-    UIColorImage = [self imageFromWriter:writer];
+    
+    UIColorImage = [[JZ_ImageHelper sharedManager] imageFromWriter:writer height:PamoMapHeight];
     
     NSMutableArray * ColorMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIColorImage];
     NSMutableArray * HeightMapImagesArray = [self cubeMapImagesRotationFixedArrayUsingPanoMap:UIHeightImage];
@@ -137,26 +140,6 @@
     
 }
 
-- (UIImage *)imageFromWriter:(utils::WriterBMP)writer
-{
-    uint8_t *pixelData =  writer.WriteTo_UNIT8_Array();
-    // create the bitmap context:
-    const size_t BitsPerComponent = 8;
-    const size_t BytesPerRow=((BitsPerComponent * PamoMapHeight*2) / 8) * 4;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef gtx = CGBitmapContextCreate(&pixelData[0], PamoMapHeight*2, PamoMapHeight, BitsPerComponent, BytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
-    // create the image:
-    CGImageRef toCGImage = CGBitmapContextCreateImage(gtx);
-    
-    // remember to cleanup your resources! :)
-    free(pixelData);
-    
-    UIImage *image = [[UIImage alloc] initWithCGImage:toCGImage];
-    
-    CGImageRelease(toCGImage);
-    
-    return image;
-}
 
 #pragma mark - make a array of SCNMaterials using given Pano Map
 - (NSMutableArray *)cubeMapImagesRotationFixedArrayUsingPanoMap:(UIImage *)image

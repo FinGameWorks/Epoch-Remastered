@@ -12,6 +12,10 @@
 		0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856791C934C9E0044399A /* JZ_HUDNode.h */; };
 		0D38567C1C934C9E0044399A /* JZ_HUDNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D38567A1C934C9E0044399A /* JZ_HUDNode.m */; };
 		0D38567E1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader in Resources */ = {isa = PBXBuildFile; fileRef = 0D38567D1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader */; };
+		0D3856811C93FF7E0044399A /* JZ_PlanetDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D38567F1C93FF7E0044399A /* JZ_PlanetDataSource.h */; };
+		0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */; };
+		0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */; };
+		0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */; };
 		0D7AFC771C8E086C00FC93C8 /* noiseutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */; };
 		0D7AFC791C8E0A0B00FC93C8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */; };
 		0D7AFC7B1C8EAAA800FC93C8 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC7A1C8EAAA800FC93C8 /* SceneKit.framework */; };
@@ -39,7 +43,6 @@
 		0D7AFCD51C92EEF000FC93C8 /* JZ_Atomsphere.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFCD31C92EEF000FC93C8 /* JZ_Atomsphere.m */; };
 		0D7AFCD91C9300C600FC93C8 /* PlanetShader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 0D7AFCD81C9300C600FC93C8 /* PlanetShader.frag */; };
 		0D7AFCDB1C9301F100FC93C8 /* PlanetShader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 0D7AFCDA1C9301F100FC93C8 /* PlanetShader.vert */; };
-		0D7B52AE1C932FB200E1A0AB /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7B52AD1C932FB200E1A0AB /* GameplayKit.framework */; };
 		0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE5F1C8DE6C100FFE0E2 /* main.m */; };
 		0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE621C8DE6C100FFE0E2 /* AppDelegate.m */; };
 		0D92BE651C8DE6C100FFE0E2 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D92BE641C8DE6C100FFE0E2 /* art.scnassets */; };
@@ -132,6 +135,10 @@
 		0D3856791C934C9E0044399A /* JZ_HUDNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_HUDNode.h; sourceTree = "<group>"; };
 		0D38567A1C934C9E0044399A /* JZ_HUDNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_HUDNode.m; sourceTree = "<group>"; };
 		0D38567D1C9354A90044399A /* SCNShaderModifierEntryPointLightingModel_Toon.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCNShaderModifierEntryPointLightingModel_Toon.shader; sourceTree = "<group>"; };
+		0D38567F1C93FF7E0044399A /* JZ_PlanetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_PlanetDataSource.h; sourceTree = "<group>"; };
+		0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JZ_PlanetDataSource.mm; sourceTree = "<group>"; };
+		0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_QuadtreeTerrainDataSource.h; sourceTree = "<group>"; };
+		0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_QuadtreeTerrainDataSource.m; sourceTree = "<group>"; };
 		0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noiseutils.cpp; sourceTree = "<group>"; };
 		0D7AFC761C8E086C00FC93C8 /* noiseutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noiseutils.h; sourceTree = "<group>"; };
 		0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -166,7 +173,6 @@
 		0D7AFCD31C92EEF000FC93C8 /* JZ_Atomsphere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_Atomsphere.m; sourceTree = "<group>"; };
 		0D7AFCD81C9300C600FC93C8 /* PlanetShader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlanetShader.frag; sourceTree = "<group>"; };
 		0D7AFCDA1C9301F100FC93C8 /* PlanetShader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlanetShader.vert; sourceTree = "<group>"; };
-		0D7B52AD1C932FB200E1A0AB /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = System/Library/Frameworks/GameplayKit.framework; sourceTree = SDKROOT; };
 		0D92BE5B1C8DE6C100FFE0E2 /* EpochRemastered.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpochRemastered.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D92BE5F1C8DE6C100FFE0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0D92BE611C8DE6C100FFE0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -275,7 +281,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D7B52AE1C932FB200E1A0AB /* GameplayKit.framework in Frameworks */,
 				0D7AFCCB1C9201E600FC93C8 /* QuartzCore.framework in Frameworks */,
 				0D7AFCCA1C9201E100FC93C8 /* AVFoundation.framework in Frameworks */,
 				0D7AFCC91C9201DA00FC93C8 /* OpenGLES.framework in Frameworks */,
@@ -315,6 +320,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D3856831C93FF810044399A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0D38567F1C93FF7E0044399A /* JZ_PlanetDataSource.h */,
+				0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */,
+				0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */,
+				0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		0D7AFC861C8FF3B100FC93C8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +340,7 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		0D7AFCB31C91E90B00FC93C8 /* Universe */ = {
+		0D7AFCB31C91E90B00FC93C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */,
@@ -342,13 +358,12 @@
 				0D7AFCD81C9300C600FC93C8 /* PlanetShader.frag */,
 				0D7AFCDA1C9301F100FC93C8 /* PlanetShader.vert */,
 			);
-			name = Universe;
+			name = View;
 			sourceTree = "<group>";
 		};
 		0D92BE521C8DE6C100FFE0E2 = {
 			isa = PBXGroup;
 			children = (
-				0D7B52AD1C932FB200E1A0AB /* GameplayKit.framework */,
 				0D7AFCC81C9201DA00FC93C8 /* OpenGLES.framework */,
 				0D7AFCC41C9201C100FC93C8 /* GPUImage.framework */,
 				0D7AFC9F1C8FFD7C00FC93C8 /* UIKit.framework */,
@@ -401,7 +416,8 @@
 				0D38567A1C934C9E0044399A /* JZ_HUDNode.m */,
 				0D3856751C934AB50044399A /* JZ_ControlView.h */,
 				0D3856761C934AB50044399A /* JZ_ControlView.m */,
-				0D7AFCB31C91E90B00FC93C8 /* Universe */,
+				0D7AFCB31C91E90B00FC93C8 /* View */,
+				0D3856831C93FF810044399A /* Data */,
 				0D7AFC861C8FF3B100FC93C8 /* Utilities */,
 				0D92BE691C8DE6C100FFE0E2 /* Main.storyboard */,
 				0D92BE6C1C8DE6C100FFE0E2 /* Assets.xcassets */,
@@ -551,8 +567,10 @@
 			files = (
 				0D7AFCD41C92EEF000FC93C8 /* JZ_Atomsphere.h in Headers */,
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
+				0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */,
 				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
 				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
+				0D3856811C93FF7E0044399A /* JZ_PlanetDataSource.h in Headers */,
 				0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */,
 				0D7AFCBE1C91F95400FC93C8 /* JZ_Player.h in Headers */,
 				0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */,
@@ -734,7 +752,9 @@
 				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,
 				0D7AFCBB1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m in Sources */,
 				0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */,
+				0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
+				0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */,
 				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,
 				0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */,
 				0D7AFCD51C92EEF000FC93C8 /* JZ_Atomsphere.m in Sources */,

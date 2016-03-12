@@ -10,4 +10,19 @@
 
 @interface JZ_PlanetSCNNode : SCNNode
 
+// Planet Transform
+@property (nonatomic) float planetRadius;
+
+// Planet Map Generation Parameter
+@property (nonatomic) float basicSubmeshLevel;
+
+
+// Debug
+@property (nonatomic) BOOL isDebug;
+
+
+
+- (void)initPlanet;
+
+
 @end

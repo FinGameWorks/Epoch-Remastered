@@ -26,6 +26,7 @@
 {
     SCNNode *ShipNode = [[SCNScene sceneNamed:ShipSceneName inDirectory:@"art.scnassets" options:nil].rootNode clone];
     [self addChildNode:ShipNode];
+    ShipNode.position = SCNVector3Make(0.0f, 0.0f, 0.0f);
 }
 
 @end

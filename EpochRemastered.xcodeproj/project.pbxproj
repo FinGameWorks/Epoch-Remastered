@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D094E1C1C9483C900AC549D /* JZ_CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */; };
 		0D3856771C934AB50044399A /* JZ_ControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856751C934AB50044399A /* JZ_ControlView.h */; };
 		0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856761C934AB50044399A /* JZ_ControlView.m */; };
 		0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856791C934C9E0044399A /* JZ_HUDNode.h */; };
@@ -130,6 +131,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D094E191C9483C900AC549D /* JZ_CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZ_CameraNode.h; path = ../JZ_CameraNode.h; sourceTree = "<group>"; };
+		0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZ_CameraNode.m; path = ../JZ_CameraNode.m; sourceTree = "<group>"; };
 		0D3856751C934AB50044399A /* JZ_ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_ControlView.h; sourceTree = "<group>"; };
 		0D3856761C934AB50044399A /* JZ_ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_ControlView.m; sourceTree = "<group>"; };
 		0D3856791C934C9E0044399A /* JZ_HUDNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_HUDNode.h; sourceTree = "<group>"; };
@@ -340,9 +343,11 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		0D7AFCB31C91E90B00FC93C8 /* View */ = {
+		0D7AFCB31C91E90B00FC93C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0D094E191C9483C900AC549D /* JZ_CameraNode.h */,
+				0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */,
 				0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */,
 				0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */,
 				0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */,
@@ -358,7 +363,7 @@
 				0D7AFCD81C9300C600FC93C8 /* PlanetShader.frag */,
 				0D7AFCDA1C9301F100FC93C8 /* PlanetShader.vert */,
 			);
-			name = View;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		0D92BE521C8DE6C100FFE0E2 = {
@@ -416,7 +421,7 @@
 				0D38567A1C934C9E0044399A /* JZ_HUDNode.m */,
 				0D3856751C934AB50044399A /* JZ_ControlView.h */,
 				0D3856761C934AB50044399A /* JZ_ControlView.m */,
-				0D7AFCB31C91E90B00FC93C8 /* View */,
+				0D7AFCB31C91E90B00FC93C8 /* Controller */,
 				0D3856831C93FF810044399A /* Data */,
 				0D7AFC861C8FF3B100FC93C8 /* Utilities */,
 				0D92BE691C8DE6C100FFE0E2 /* Main.storyboard */,
@@ -568,6 +573,7 @@
 				0D7AFCD41C92EEF000FC93C8 /* JZ_Atomsphere.h in Headers */,
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
 				0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */,
+				0D094E1B1C9483C900AC549D /* JZ_CameraNode.h in Headers */,
 				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
 				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
 				0D3856811C93FF7E0044399A /* JZ_PlanetDataSource.h in Headers */,
@@ -755,6 +761,7 @@
 				0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
 				0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */,
+				0D094E1C1C9483C900AC549D /* JZ_CameraNode.m in Sources */,
 				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,
 				0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */,
 				0D7AFCD51C92EEF000FC93C8 /* JZ_Atomsphere.m in Sources */,
@@ -954,7 +961,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = EpochRemastered/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -976,7 +983,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = EpochRemastered/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

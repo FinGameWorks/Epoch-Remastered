@@ -13,6 +13,7 @@
 
 - (void)LogicUpdate
 {
+    
 }
 - (void)LogicFixedUpdate
 {
@@ -23,4 +24,6 @@
     
     //camera setup here
 }
+
+
 @end

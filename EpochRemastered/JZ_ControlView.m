@@ -19,13 +19,17 @@
 @property (nonatomic,strong) UIImageView *buttonRightNormalImageView;
 
 @property (nonatomic,strong) UIView *speedSliderFullScreemView;
+
+
+
+
+@property (nonatomic) float joystickReleaseDistance;
 @end
 @implementation JZ_ControlView
 @synthesize joystickPoint,joystickBaseSize,joystickTouchSize;
 @synthesize joystickLeftBaseImageView,joystickLeftTouchImageView;
 @synthesize speedSliderFullScreemView;
-
-
+@synthesize joystickReleaseDistance;
 @synthesize JoystickTouchVector,speedSliderDirection;
 
 - (id)initWithFrame:(CGRect)frame
@@ -84,18 +88,34 @@
     joystickLeftBaseImageView.frame = CGRectMake(joystickPoint.x - joystickBaseSize.width/2, joystickPoint.y - joystickBaseSize.height/2, joystickBaseSize.width, joystickBaseSize.height);
     
     joystickLeftTouchImageView.frame = CGRectMake(joystickBaseSize.width/2 - joystickTouchSize.width/2, joystickBaseSize.height/2 - joystickTouchSize.height/2, joystickTouchSize.width, joystickTouchSize.height);
+    
+    joystickReleaseDistance = sqrt(powf(joystickLeftBaseImageView.frame.size.width/2, 2.0f) + powf(joystickLeftBaseImageView.frame.size.height/2, 2.0f));
 }
 
 - (void)handlejoystickLeftBaseImageViewPan:(UIPanGestureRecognizer *)gesture
 {
+    //Check if Joystick touch image have be dragged out the Base Image's Bounds;
+    
+    CGPoint point = [gesture locationInView:joystickLeftBaseImageView];
+    
     if (gesture.state == UIGestureRecognizerStateEnded)
     {
         JoystickTouchVector = CGPointMake(0.0f, 0.0f);
     }else
     {
-        JoystickTouchVector = CGPointMake([gesture locationInView:joystickLeftBaseImageView].x - joystickLeftBaseImageView.frame.size.width/2, [gesture locationInView:joystickLeftBaseImageView].y - joystickLeftBaseImageView.frame.size.height/2);
+        JoystickTouchVector = CGPointMake(point.x - joystickLeftBaseImageView.frame.size.width/2, point.y - joystickLeftBaseImageView.frame.size.height/2);
     }
     
+    CGFloat distance = sqrt(powf(JoystickTouchVector.x, 2.0f) + powf(JoystickTouchVector.y, 2.0f));
+    
+    
+    if (distance > joystickReleaseDistance)
+    {
+        //JoystickTouchVector = CGPointMake(0.0f, 0.0f);
+        JoystickTouchVector = CGPointMake(point.x - joystickLeftBaseImageView.frame.size.width/2, point.y - joystickLeftBaseImageView.frame.size.height/2);
+        JoystickTouchVector  = CGPointMake(JoystickTouchVector.x / distance * joystickReleaseDistance, JoystickTouchVector.y / distance * joystickReleaseDistance);
+    }
+
     joystickLeftTouchImageView.center = CGPointMake(JoystickTouchVector.x + joystickLeftBaseImageView.frame.size.width/2, JoystickTouchVector.y + joystickLeftBaseImageView.frame.size.height/2);
     
     NSLog(@"joystick : X:%f  Y:%f",JoystickTouchVector.x,JoystickTouchVector.y);

@@ -8,7 +8,7 @@
 
 #define SubMesh 72
 #define PamoMapHeight 1024
-#define isDebug NO
+#define isDebug YES
 
 #import "NoiseDebuggerViewController.h"
 #import "GPUImage/GPUImage.h"
@@ -26,9 +26,9 @@
 #include "noiseutils.h"
 
 #import "JZ_Skybox.h"
-#import "JZ_Player.h"
+#import "JZ_MainPlayer.h"
 #import "JZ_Atomsphere.h"
-
+#import "JZ_CameraNode.h"
 #import "JZ_ControlView.h"
 
 @interface NoiseDebuggerViewController () <SCNSceneRendererDelegate>
@@ -179,45 +179,43 @@
 {
     PlanetSceneKitView.scene = [SCNScene scene];
     
+    PlanetSceneKitView.playing = YES;
+    
     [[JZ_Skybox sharedManager] SkyboxInScene:PlanetSceneKitView.scene];
     
-    PlanetSceneKitView.allowsCameraControl = YES;
+    //PlanetSceneKitView.allowsCameraControl = YES;
     PlanetSceneKitView.showsStatistics = YES;
     PlanetSceneKitView.backgroundColor = [UIColor blackColor];
     
     if (isDebug)
     {
-        PlanetSceneKitView.debugOptions = SCNDebugOptionShowWireframe;
+        PlanetSceneKitView.debugOptions = SCNDebugOptionShowBoundingBoxes;
 
     }
     
-    JZ_Player *player = [JZ_Player node];
+    JZ_MainPlayer *player = [JZ_MainPlayer node];
     player.ShipSceneName = @"ship.scn";
     [player initShip];
     [PlanetSceneKitView.scene.rootNode addChildNode:player];
     player.geometry.firstMaterial.reflective.contents = PlanetSceneKitView.scene.background.contents;
-    player.position = SCNVector3Make(230, 0, 0);
+    player.position = SCNVector3Make(200, 0, 0);
     
-//    SCNSphere *PlanetSphere = [SCNSphere sphereWithRadius:30.0f];
-//    PlanetSphere.geodesic = NO;
-//    
-//    SCNNode *PlanetNode = [SCNNode nodeWithGeometry:PlanetSphere];
-//    [PlanetSceneKitView.scene.rootNode addChildNode:PlanetNode];
-//
     
-    // create and add a camera to the scene
-    //MDLCAMER CANNOT MAKE IT TO SCNCAMERA WITH chromaticAberration, TOTALLY USELESS!!!!!!!!!!!!!!!!!!!!!!
-    //AND PBR MATERIALs IN MODELIO ALSO DONT SUPPORT SCENEKIT, WTF
-    
-    SCNNode *cameraNode = [SCNNode node];
-    cameraNode.camera = [SCNCamera camera];
-//    cameraNode.camera.zNear = 0.000000001f;
-//    cameraNode.camera.zFar = 9999999999.0f;
-    cameraNode.camera.automaticallyAdjustsZRange = YES;
+    JZ_CameraNode *cameraNode = [JZ_CameraNode node];
     [PlanetSceneKitView.scene.rootNode addChildNode:cameraNode];
+    PlanetSceneKitView.pointOfView = cameraNode;
+    cameraNode.MainPlayer = player;
+    [cameraNode initCamera];
     
-    // place the camera
-    cameraNode.position = SCNVector3Make(0, 0, 100);
+//    SCNNode *cameraNode = [SCNNode node];
+//    cameraNode.camera = [SCNCamera camera];
+////    cameraNode.camera.zNear = 0.000000001f;
+////    cameraNode.camera.zFar = 9999999999.0f;
+//    cameraNode.camera.automaticallyAdjustsZRange = YES;
+//    [PlanetSceneKitView.scene.rootNode addChildNode:cameraNode];
+//    
+//    // place the camera
+//    cameraNode.position = SCNVector3Make(0, 0, 100);
     
 //    
 //    //atomsphere
@@ -486,7 +484,7 @@
     
 
 
-    
+    NSLog(@"");
 //    NSURL *ShaderURL = [[NSBundle mainBundle]
 //                                URLForResource:@"/SCNShaderModifierEntryPointLightingModel_Toon" withExtension:@"shader"];
 //    NSString *Shader = [[NSString alloc] initWithContentsOfURL:ShaderURL

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D094E1C1C9483C900AC549D /* JZ_CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */; };
 		0D3856771C934AB50044399A /* JZ_ControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856751C934AB50044399A /* JZ_ControlView.h */; };
 		0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856761C934AB50044399A /* JZ_ControlView.m */; };
 		0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856791C934C9E0044399A /* JZ_HUDNode.h */; };
@@ -17,6 +16,8 @@
 		0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */; };
 		0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */; };
 		0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */; };
+		0D449EE01C94B31F007F0AF6 /* JZ_CameraNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */; };
+		0D449EE11C94B31F007F0AF6 /* JZ_CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */; };
 		0D7AFC771C8E086C00FC93C8 /* noiseutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */; };
 		0D7AFC791C8E0A0B00FC93C8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */; };
 		0D7AFC7B1C8EAAA800FC93C8 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC7A1C8EAAA800FC93C8 /* SceneKit.framework */; };
@@ -131,8 +132,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D094E191C9483C900AC549D /* JZ_CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZ_CameraNode.h; path = ../JZ_CameraNode.h; sourceTree = "<group>"; };
-		0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZ_CameraNode.m; path = ../JZ_CameraNode.m; sourceTree = "<group>"; };
 		0D3856751C934AB50044399A /* JZ_ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_ControlView.h; sourceTree = "<group>"; };
 		0D3856761C934AB50044399A /* JZ_ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_ControlView.m; sourceTree = "<group>"; };
 		0D3856791C934C9E0044399A /* JZ_HUDNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_HUDNode.h; sourceTree = "<group>"; };
@@ -142,6 +141,8 @@
 		0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JZ_PlanetDataSource.mm; sourceTree = "<group>"; };
 		0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_QuadtreeTerrainDataSource.h; sourceTree = "<group>"; };
 		0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_QuadtreeTerrainDataSource.m; sourceTree = "<group>"; };
+		0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_CameraNode.h; sourceTree = "<group>"; };
+		0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_CameraNode.m; sourceTree = "<group>"; };
 		0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noiseutils.cpp; sourceTree = "<group>"; };
 		0D7AFC761C8E086C00FC93C8 /* noiseutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noiseutils.h; sourceTree = "<group>"; };
 		0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -346,8 +347,8 @@
 		0D7AFCB31C91E90B00FC93C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0D094E191C9483C900AC549D /* JZ_CameraNode.h */,
-				0D094E1A1C9483C900AC549D /* JZ_CameraNode.m */,
+				0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */,
+				0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */,
 				0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */,
 				0D7AFCB01C91E90600FC93C8 /* JZ_PlanetSCNNode.m */,
 				0D7AFCB41C91EA2800FC93C8 /* JZ_Skybox.h */,
@@ -573,12 +574,12 @@
 				0D7AFCD41C92EEF000FC93C8 /* JZ_Atomsphere.h in Headers */,
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
 				0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */,
-				0D094E1B1C9483C900AC549D /* JZ_CameraNode.h in Headers */,
 				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
 				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
 				0D3856811C93FF7E0044399A /* JZ_PlanetDataSource.h in Headers */,
 				0D7AFC891C8FF3D400FC93C8 /* JZ_ImageHelper.h in Headers */,
 				0D7AFCBE1C91F95400FC93C8 /* JZ_Player.h in Headers */,
+				0D449EE01C94B31F007F0AF6 /* JZ_CameraNode.h in Headers */,
 				0D38567B1C934C9E0044399A /* JZ_HUDNode.h in Headers */,
 				0D7AFCB11C91E90600FC93C8 /* JZ_PlanetSCNNode.h in Headers */,
 				0D7AFC8C1C8FFA9000FC93C8 /* EpochRematered.pch in Headers */,
@@ -749,6 +750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D449EE11C94B31F007F0AF6 /* JZ_CameraNode.m in Sources */,
 				0D7AFCBF1C91F95400FC93C8 /* JZ_Player.m in Sources */,
 				0D38567C1C934C9E0044399A /* JZ_HUDNode.m in Sources */,
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
@@ -761,7 +763,6 @@
 				0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
 				0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */,
-				0D094E1C1C9483C900AC549D /* JZ_CameraNode.m in Sources */,
 				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,
 				0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */,
 				0D7AFCD51C92EEF000FC93C8 /* JZ_Atomsphere.m in Sources */,

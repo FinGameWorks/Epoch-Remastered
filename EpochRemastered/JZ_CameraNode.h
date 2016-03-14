@@ -11,10 +11,12 @@
 
 @interface JZ_CameraNode : SCNNode
 
-@property (nonatomic,weak) JZ_MainPlayer *MainPlayer;
+@property (nonatomic,strong) JZ_MainPlayer *MainPlayer;
 
 @property (nonatomic,strong)SCNNode *CameraLookAtNode;
 @property (nonatomic,strong)SCNNode *CameraPositionNode;
+
+@property (nonatomic,strong)SCNNode *CameraInnerNode;
 
 - (void)LogicUpdate;
 - (void)LogicFixedUpdate;

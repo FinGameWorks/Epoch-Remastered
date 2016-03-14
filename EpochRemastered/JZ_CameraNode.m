@@ -11,21 +11,36 @@
 @implementation JZ_CameraNode
 @synthesize MainPlayer;
 @synthesize CameraPositionNode,CameraLookAtNode;
+@synthesize CameraInnerNode;
 
 - (void)LogicUpdate
 {
-    NSLog(@"LogicUpdate:%@",NSStringFromClass([self class]));
+//
+//    //NSLog(@"LogicUpdate:%@",NSStringFromClass([self class]));
+//    SCNVector3 idealPosition = [self.parentNode convertPosition:CameraPositionNode.presentationNode.position fromNode:CameraPositionNode.parentNode.presentationNode];
+//    
+//    self.position = idealPosition;
+//    NSLog(@"idealPosition %f %f %f ",idealPosition.x,idealPosition.y,idealPosition.z);
+//    NSLog(@"JZ_CameraNode self.presentationNode.position %f %f %f ",self.presentationNode.position.x,self.presentationNode.position.y,self.presentationNode.position.z);
+    
+    //self.transform = [self.parentNode convertTransform:CameraPositionNode.presentationNode.transform fromNode:CameraPositionNode.parentNode.presentationNode];
+    
+    //NSLog(@"JZ_CameraNode self.position %f %f %f ",self.position.x,self.position.y,self.position.z);
+
 }
 - (void)LogicFixedUpdate
 {
-    NSLog(@"LogicFixedUpdate:%@",NSStringFromClass([self class]));
+    //NSLog(@"LogicFixedUpdate:%@",NSStringFromClass([self class]));
 }
 
 - (void)initCamera
 {
+    CameraInnerNode = [SCNNode node];
     SCNCamera *cam = [SCNCamera camera];
-    self.camera = cam;
-    self.camera.automaticallyAdjustsZRange = YES;
+    CameraInnerNode.position = SCNVector3Make(0.0f, 0.0f, 0.0f);
+    CameraInnerNode.camera = cam;
+    CameraInnerNode.camera.automaticallyAdjustsZRange = YES;
+    [self addChildNode:CameraInnerNode];
     
     if (MainPlayer)
     {
@@ -36,18 +51,18 @@
         
         
         CameraPositionNode = [MainPlayer childNodeWithName:@"CameraPosition" recursively:YES];
+        
+        
         SCNTransformConstraint *TransformConstraint = [SCNTransformConstraint transformConstraintInWorldSpace:YES withBlock:^SCNMatrix4(SCNNode *node, SCNMatrix4 transform)
                                                        {
-                                                           
-                                                           transform = [MainPlayer.parentNode convertTransform:CameraPositionNode.transform fromNode:CameraPositionNode.parentNode];
+                                                           transform = [self.parentNode convertTransform:CameraPositionNode.presentationNode.transform fromNode:CameraPositionNode.parentNode.presentationNode];
                                                            
                                                            return transform;
                                                        }];
         TransformConstraint.influenceFactor = 1.0f;
+        self.constraints = @[TransformConstraint];
         
-        
-        
-        self.constraints = @[TransformConstraint,LookAtConstraint];
+        CameraInnerNode.constraints = @[LookAtConstraint];
     }
     
 }

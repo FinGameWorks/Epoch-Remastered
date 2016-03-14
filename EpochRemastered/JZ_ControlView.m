@@ -103,20 +103,20 @@
         JoystickTouchVector = CGPointMake(0.0f, 0.0f);
     }else
     {
-        JoystickTouchVector = CGPointMake(point.x - joystickLeftBaseImageView.frame.size.width/2, point.y - joystickLeftBaseImageView.frame.size.height/2);
+        JoystickTouchVector = CGPointMake((point.x - joystickLeftBaseImageView.frame.size.width/2)/joystickReleaseDistance, (point.y - joystickLeftBaseImageView.frame.size.height/2)/joystickReleaseDistance);
     }
     
     CGFloat distance = sqrt(powf(JoystickTouchVector.x, 2.0f) + powf(JoystickTouchVector.y, 2.0f));
     
     
-    if (distance > joystickReleaseDistance)
+    if (distance > 1.0f)
     {
         //JoystickTouchVector = CGPointMake(0.0f, 0.0f);
-        JoystickTouchVector = CGPointMake(point.x - joystickLeftBaseImageView.frame.size.width/2, point.y - joystickLeftBaseImageView.frame.size.height/2);
-        JoystickTouchVector  = CGPointMake(JoystickTouchVector.x / distance * joystickReleaseDistance, JoystickTouchVector.y / distance * joystickReleaseDistance);
+        JoystickTouchVector = CGPointMake((point.x - joystickLeftBaseImageView.frame.size.width/2)/joystickReleaseDistance, (point.y - joystickLeftBaseImageView.frame.size.height/2)/joystickReleaseDistance);
+        JoystickTouchVector  = CGPointMake(JoystickTouchVector.x / distance, JoystickTouchVector.y / distance);
     }
 
-    joystickLeftTouchImageView.center = CGPointMake(JoystickTouchVector.x + joystickLeftBaseImageView.frame.size.width/2, JoystickTouchVector.y + joystickLeftBaseImageView.frame.size.height/2);
+    joystickLeftTouchImageView.center = CGPointMake(JoystickTouchVector.x * joystickReleaseDistance+ joystickLeftBaseImageView.frame.size.width/2, JoystickTouchVector.y * joystickReleaseDistance + joystickLeftBaseImageView.frame.size.height/2);
     
     NSLog(@"joystick : X:%f  Y:%f",JoystickTouchVector.x,JoystickTouchVector.y);
 }

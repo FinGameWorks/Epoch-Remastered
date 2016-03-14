@@ -40,11 +40,14 @@
 
 @property (nonatomic,strong) SCNNode * PlanetNode;
 
+
+@property (nonatomic,strong) JZ_ControlView *controlView;
+
 @end
 
 @implementation NoiseDebuggerViewController
 @synthesize UIColorImage,UIHeightImage,UINormalImage,PlanetSceneKitView,PlanetNode;
-@synthesize RandomSeedSlider;
+@synthesize RandomSeedSlider,controlView;
 
 - (void)viewDidLoad
 {
@@ -54,15 +57,15 @@
     
     [self EmptySandbox];
     
+    controlView = [[JZ_ControlView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:controlView];
     
     [RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
     
     PlanetSceneKitView.delegate = self;
-    
-    JZ_ControlView *controlView = [[JZ_ControlView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:controlView];
+
     
 }
 
@@ -199,13 +202,18 @@
     [PlanetSceneKitView.scene.rootNode addChildNode:player];
     player.geometry.firstMaterial.reflective.contents = PlanetSceneKitView.scene.background.contents;
     player.position = SCNVector3Make(200, 0, 0);
+    player.controlView = self.controlView;
+    
+    //[player childNodeWithName:@"PlayerCamera" recursively:YES].camera.automaticallyAdjustsZRange = YES;
+    
+    //PlanetSceneKitView.pointOfView = [player childNodeWithName:@"PlayerCamera" recursively:YES];
     
     
     JZ_CameraNode *cameraNode = [JZ_CameraNode node];
     [PlanetSceneKitView.scene.rootNode addChildNode:cameraNode];
-    PlanetSceneKitView.pointOfView = cameraNode;
     cameraNode.MainPlayer = player;
     [cameraNode initCamera];
+    self.PlanetSceneKitView.pointOfView = cameraNode.CameraInnerNode;
     
 //    SCNNode *cameraNode = [SCNNode node];
 //    cameraNode.camera = [SCNCamera camera];
@@ -547,6 +555,18 @@
         }
     }];
 }
+
+//- (void)renderer:(id<SCNSceneRenderer>)renderer didSimulatePhysicsAtTime:(NSTimeInterval)time
+//{
+//    [PlanetSceneKitView.scene.rootNode enumerateChildNodesUsingBlock:^(SCNNode *child,
+//                                                                       BOOL *stop)
+//     {
+//         if ([child respondsToSelector:@selector(LogicUpdate)])
+//         {
+//             [child performSelector:@selector(LogicUpdate)];
+//         }
+//     }];
+//}
 
 
 /*

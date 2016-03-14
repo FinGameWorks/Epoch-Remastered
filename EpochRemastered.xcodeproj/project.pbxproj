@@ -55,6 +55,9 @@
 		0D92BE7B1C8DE6C100FFE0E2 /* EpochRemasteredTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE7A1C8DE6C100FFE0E2 /* EpochRemasteredTests.m */; };
 		0D92BE861C8DE6C100FFE0E2 /* EpochRemasteredUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D92BE851C8DE6C100FFE0E2 /* EpochRemasteredUITests.m */; };
 		0D92BE941C8DE87600FFE0E2 /* ModelIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D92BE931C8DE87600FFE0E2 /* ModelIO.framework */; };
+		0DA16F7D1C97013E00097A4C /* VectorMath+Quartz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA16F771C96FACC00097A4C /* VectorMath+Quartz.swift */; };
+		0DA16F7E1C97013E00097A4C /* VectorMath+SceneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA16F781C96FACC00097A4C /* VectorMath+SceneKit.swift */; };
+		0DA16F7F1C97017400097A4C /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA16F761C96FACC00097A4C /* VectorMath.swift */; };
 		0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0DDF99D41C8DF2720050D471 /* NoiseDebuggerViewController.mm */; };
 		0DDF9A351C8DF9D40050D471 /* liblibnoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DDF9A161C8DF8FF0050D471 /* liblibnoise.a */; };
 		0DDF9A371C8DF9ED0050D471 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DDF9A361C8DF9ED0050D471 /* libc++.tbd */; };
@@ -195,6 +198,10 @@
 		0D92BE851C8DE6C100FFE0E2 /* EpochRemasteredUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpochRemasteredUITests.m; sourceTree = "<group>"; };
 		0D92BE871C8DE6C100FFE0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D92BE931C8DE87600FFE0E2 /* ModelIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ModelIO.framework; path = System/Library/Frameworks/ModelIO.framework; sourceTree = SDKROOT; };
+		0DA16F751C96FACB00097A4C /* EpochRemastered-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpochRemastered-Bridging-Header.h"; sourceTree = "<group>"; };
+		0DA16F761C96FACC00097A4C /* VectorMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
+		0DA16F771C96FACC00097A4C /* VectorMath+Quartz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VectorMath+Quartz.swift"; sourceTree = "<group>"; };
+		0DA16F781C96FACC00097A4C /* VectorMath+SceneKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VectorMath+SceneKit.swift"; sourceTree = "<group>"; };
 		0DDF99D31C8DF2720050D471 /* NoiseDebuggerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseDebuggerViewController.h; sourceTree = "<group>"; };
 		0DDF99D41C8DF2720050D471 /* NoiseDebuggerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NoiseDebuggerViewController.mm; sourceTree = "<group>"; };
 		0DDF9A161C8DF8FF0050D471 /* liblibnoise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibnoise.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,6 +419,9 @@
 				0D7AFC8B1C8FFA9000FC93C8 /* EpochRematered.pch */,
 				0D92BE611C8DE6C100FFE0E2 /* AppDelegate.h */,
 				0D92BE621C8DE6C100FFE0E2 /* AppDelegate.m */,
+				0DA16F761C96FACC00097A4C /* VectorMath.swift */,
+				0DA16F771C96FACC00097A4C /* VectorMath+Quartz.swift */,
+				0DA16F781C96FACC00097A4C /* VectorMath+SceneKit.swift */,
 				0D92BE641C8DE6C100FFE0E2 /* art.scnassets */,
 				0D92BE661C8DE6C100FFE0E2 /* GameViewController.h */,
 				0D92BE671C8DE6C100FFE0E2 /* GameViewController.m */,
@@ -430,6 +440,7 @@
 				0D92BE6E1C8DE6C100FFE0E2 /* LaunchScreen.storyboard */,
 				0D92BE711C8DE6C100FFE0E2 /* Info.plist */,
 				0D92BE5E1C8DE6C100FFE0E2 /* Supporting Files */,
+				0DA16F751C96FACB00097A4C /* EpochRemastered-Bridging-Header.h */,
 			);
 			path = EpochRemastered;
 			sourceTree = "<group>";
@@ -756,13 +767,16 @@
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
 				0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */,
 				0D92BE681C8DE6C100FFE0E2 /* GameViewController.m in Sources */,
+				0DA16F7D1C97013E00097A4C /* VectorMath+Quartz.swift in Sources */,
 				0D7AFCC31C91F96B00FC93C8 /* JZ_MainPlayer.m in Sources */,
+				0DA16F7F1C97017400097A4C /* VectorMath.swift in Sources */,
 				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,
 				0D7AFCBB1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m in Sources */,
 				0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */,
 				0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
 				0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */,
+				0DA16F7E1C97013E00097A4C /* VectorMath+SceneKit.swift in Sources */,
 				0D7AFCB71C91EA2800FC93C8 /* JZ_Skybox.mm in Sources */,
 				0D7AFC8A1C8FF3D400FC93C8 /* JZ_ImageHelper.mm in Sources */,
 				0D7AFCD51C92EEF000FC93C8 /* JZ_Atomsphere.m in Sources */,
@@ -888,6 +902,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -933,6 +949,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -956,7 +974,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -968,8 +988,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EpochRemastered",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.EpochRemastered;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = EpochRemastered;
+				PRODUCT_NAME = EpochRemastered;
+				SWIFT_OBJC_BRIDGING_HEADER = "EpochRemastered/EpochRemastered-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -978,7 +1000,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -990,8 +1014,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EpochRemastered",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JustZht.EpochRemastered;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = EpochRemastered;
+				PRODUCT_NAME = EpochRemastered;
+				SWIFT_OBJC_BRIDGING_HEADER = "EpochRemastered/EpochRemastered-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

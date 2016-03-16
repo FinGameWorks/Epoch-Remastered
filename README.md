@@ -3,6 +3,7 @@
 
 # to-do
 * [ ] Runtime HeightMap Generation
+* [ ] Async / Multi-thread Generation
 * [x] Cubemap mapping to Sphere  
 * [ ] Procedurally Skybox (using noise)
 * [ ] Runtime SplatMap Generation

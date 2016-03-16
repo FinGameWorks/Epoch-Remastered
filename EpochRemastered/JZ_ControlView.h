@@ -12,6 +12,6 @@
 @interface JZ_ControlView : UIView
 
 @property (nonatomic) CGPoint JoystickTouchVector;
-@property (nonatomic) int speedSliderDirection;
+@property (nonatomic) CGFloat speedSliderDirection;
 
 @end

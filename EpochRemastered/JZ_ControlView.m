@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UIImageView *buttonRightNormalImageView;
 
 @property (nonatomic,strong) UIView *speedSliderFullScreemView;
+@property (nonatomic) CGPoint speedSliderFullScreemViewStartPoint;
 
 
 
@@ -30,7 +31,7 @@
 @synthesize joystickLeftBaseImageView,joystickLeftTouchImageView;
 @synthesize speedSliderFullScreemView;
 @synthesize joystickReleaseDistance;
-@synthesize JoystickTouchVector,speedSliderDirection;
+@synthesize JoystickTouchVector,speedSliderDirection,speedSliderFullScreemViewStartPoint;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -47,15 +48,8 @@
 {
     speedSliderFullScreemView = [[UIView alloc] initWithFrame:[self frame]];
     speedSliderFullScreemView.userInteractionEnabled = YES;
-    //Swipe Down Gesture
-    UISwipeGestureRecognizer * speedSliderFullScreemViewSwipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSpeedSliderFullScreemViewSwipe:)];
-    speedSliderFullScreemViewSwipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-    //Swipe Up Gesture
-    UISwipeGestureRecognizer * speedSliderFullScreemViewSwipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSpeedSliderFullScreemViewSwipe:)];
-    speedSliderFullScreemViewSwipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-    // Added Gesture;
-    [speedSliderFullScreemView addGestureRecognizer:speedSliderFullScreemViewSwipeDownGestureRecognizer];
-    [speedSliderFullScreemView addGestureRecognizer:speedSliderFullScreemViewSwipeUpGestureRecognizer];
+    UIPanGestureRecognizer *speedSliderFullScreemViewPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSpeedSliderFullScreemViewPan:)];
+    [speedSliderFullScreemView addGestureRecognizer:speedSliderFullScreemViewPanGestureRecognizer];
     [self addSubview:speedSliderFullScreemView];
     
     
@@ -121,23 +115,32 @@
     NSLog(@"joystick : X:%f  Y:%f",JoystickTouchVector.x,JoystickTouchVector.y);
 }
 
-
-- (void)handleSpeedSliderFullScreemViewSwipe:(UISwipeGestureRecognizer *)gesture
+- (void)handleSpeedSliderFullScreemViewPan:(UIPanGestureRecognizer *)gesture
 {
-    if (gesture.direction == UISwipeGestureRecognizerDirectionUp)
+    if (gesture.state == UIGestureRecognizerStateBegan)
     {
-        speedSliderDirection = 1;
-    }
-    else if (gesture.direction == UISwipeGestureRecognizerDirectionDown)
-    {
-        speedSliderDirection = -1;
+        speedSliderFullScreemViewStartPoint =[gesture locationInView:speedSliderFullScreemView];
     }
     else
     {
-        speedSliderDirection = 0;
+        CGPoint speedSliderFullScreemViewStopPoint = [gesture locationInView:speedSliderFullScreemView];
+        CGFloat distanceY = speedSliderFullScreemViewStartPoint.y - speedSliderFullScreemViewStopPoint.y;
+        CGFloat percentage = distanceY / speedSliderFullScreemView.frame.size.height;
+        
+        speedSliderDirection += percentage;
+        
+        if (speedSliderDirection < 0.0f)
+        {
+            speedSliderDirection = 0.0f;
+        }
+        else if (speedSliderDirection > 1.0f)
+        {
+            speedSliderDirection = 1.0f;
+        }
+        
+        NSLog(@"speedSliderDirection: %f",speedSliderDirection);
     }
 }
-
 
 
 @end

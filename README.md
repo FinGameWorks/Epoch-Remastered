@@ -1,4 +1,5 @@
 # Epoch-Remastered
+![BANNER](https://github.com/FinGameWorks/Epoch-Remastered/raw/master/README/Banner.jpg)
 
 # to-do
 * [ ] Runtime HeightMap Generation

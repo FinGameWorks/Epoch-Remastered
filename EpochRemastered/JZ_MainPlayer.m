@@ -7,28 +7,55 @@
 //
 
 #import "JZ_MainPlayer.h"
-#import "EpochRemastered-swift.h"
 
 @interface JZ_MainPlayer()
 
+//world point
+@property (nonatomic) SCNVector3 centerPoint;
+@property (nonatomic) SCNVector3 forwardPoint;
+@property (nonatomic) SCNVector3 upPoint;
+@property (nonatomic) SCNVector3 rightPoint;
 
+//world vector
+@property (nonatomic) SCNVector3 forwardVector;
+@property (nonatomic) SCNVector3 backVector;
+@property (nonatomic) SCNVector3 upVector;
+@property (nonatomic) SCNVector3 rightVector;
 
 @end
 
 @implementation JZ_MainPlayer
 @synthesize controlView;
+@synthesize centerPoint,forwardVector,forwardPoint,upPoint,upVector,rightPoint,rightVector,backVector;
+
+- (SCNVector3)SCNVector3:(SCNVector3)a mins:(SCNVector3)b
+{
+    return SCNVector3Make(a.x-b.x, a.y-b.y, a.z-b.z);
+}
+
 
 - (void)LogicUpdate
 {
+    centerPoint = [self.parentNode convertPosition:SCNVector3Make(0, 0, 0) fromNode:self.presentationNode];
+    forwardPoint = [self.parentNode convertPosition:SCNVector3Make(0, 0, -1.0f) fromNode:self.presentationNode];
+    upPoint = [self.parentNode convertPosition:SCNVector3Make(0, 1.0f, 0) fromNode:self.presentationNode];
+    rightPoint = [self.parentNode convertPosition:SCNVector3Make(1.0f, 0, 0) fromNode:self.presentationNode];
+    
+    forwardVector = [self SCNVector3:forwardPoint mins:centerPoint];
+    backVector = [self SCNVector3:centerPoint mins:forwardPoint];
+    upVector = [self SCNVector3:upPoint mins:centerPoint];
+    rightVector = [self SCNVector3:rightPoint mins:centerPoint];
+    
+    
     if (controlView)
     {
         switch (controlView.speedSliderDirection)
         {
             case 1:
-                [self.physicsBody applyForce:[self.parentNode convertPosition:SCNVector3Make(0, 0, 1.0f) fromNode:self.presentationNode] impulse:NO];
+                [self.physicsBody applyForce:backVector impulse:NO];
                 break;
             case -1:
-                [self.physicsBody applyForce:[self.parentNode convertPosition:SCNVector3Make(0, 0, -1.0f) fromNode:self.presentationNode] impulse:NO];
+                [self.physicsBody applyForce:forwardVector impulse:NO];
                 break;
             case 0:
                 //[self.physicsBody applyForce:SCNVector3Make(0, 0, -1.0f) impulse:NO];
@@ -36,28 +63,13 @@
             default:
                 break;
         }
-        //self.orientation
         
+        //[self.physicsBody applyTorque:SCNVector4Make(upVector.x, upVector.y, upVector.z, -controlView.JoystickTouchVector.x*2.0f) impulse:NO];
         
+        [self.physicsBody applyTorque:SCNVector4Make(forwardVector.x,forwardVector.y,forwardVector.z, -controlView.JoystickTouchVector.x*2.0f) impulse:NO];
         
-        //SCNVector3 roll = [self.parentNode convertTransform:SCNMatrix4MakeRotation(1.0, 0, 0, 1.0) fromNode:self.presentationNode].
-        SCNVector3 roll = [self getRotation:[self.parentNode convertTransform:SCNMatrix4MakeRotation(1, 0, 0, 1.0f) fromNode:self.presentationNode]];
-        //SCNVector3 roll = [self.parentNode convertPosition:SCNVector3Make(0, 0, 1.0f) fromNode:self.presentationNode];
-        //SCNVector3 yaw = [self.parentNode convertPosition:SCNVector3Make(0, 1.0f, 0) fromNode:self.presentationNode];
+        [self.physicsBody applyTorque:SCNVector4Make(rightVector.x, rightVector.y, rightVector.z, controlView.JoystickTouchVector.y*2.0f) impulse:NO];
         
-        SCNVector3 pitch = [self getRotation:[self.parentNode convertTransform:SCNMatrix4MakeRotation(1,1.0f,0,0) fromNode:self.presentationNode]];
-        //SCNVector3 pitch = [self.parentNode convertPosition:SCNVector3Make(1.0f,0,0) fromNode:self.presentationNode];
-        
-
-        
-        [self.physicsBody applyTorque:SCNVector4Make(roll.x, roll.y, roll.z, controlView.JoystickTouchVector.x*2.0f) impulse:NO];
-        
-        //[self.physicsBody applyTorque:SCNVector4Make(0, 1.0f, 0, -controlView.JoystickTouchVector.x*2.0f) impulse:NO];
-        
-        [self.physicsBody applyTorque:SCNVector4Make(pitch.x, pitch.y, pitch.z, controlView.JoystickTouchVector.y*2.0f) impulse:NO];
-        
-        
-
 
     }
     else

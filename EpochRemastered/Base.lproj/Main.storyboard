@@ -5,6 +5,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Main Menu View Controller-->
@@ -25,57 +26,62 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-1n-Ft6">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="600"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efe-1r-hEK">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="600"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OLT-cC-4f7">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="600"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-de-Ovi">
-                                                    <rect key="frame" x="77" y="557" width="87" height="30"/>
-                                                    <state key="normal" title="Settings">
-                                                        <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNu-g0-WYu">
-                                                    <rect key="frame" x="77" y="519" width="87" height="30"/>
-                                                    <state key="normal" title="Start Game">
-                                                        <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="StartGameButtonPressed:" destination="mMd-MV-9Xb" eventType="touchUpInside" id="SHm-KG-MBN"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="M6v-de-Ovi" secondAttribute="trailing" constant="76" id="JRe-6t-tyu"/>
-                                                <constraint firstAttribute="bottom" secondItem="M6v-de-Ovi" secondAttribute="bottom" constant="13" id="QzF-DQ-9zG"/>
-                                                <constraint firstItem="M6v-de-Ovi" firstAttribute="top" secondItem="CNu-g0-WYu" secondAttribute="bottom" constant="8" id="UZk-PT-R6k"/>
-                                                <constraint firstItem="CNu-g0-WYu" firstAttribute="leading" secondItem="OLT-cC-4f7" secondAttribute="leading" constant="77" id="f0F-Vg-aIN"/>
-                                                <constraint firstAttribute="trailing" secondItem="CNu-g0-WYu" secondAttribute="trailing" constant="76" id="uBM-Kw-MM8"/>
-                                                <constraint firstItem="M6v-de-Ovi" firstAttribute="leading" secondItem="OLT-cC-4f7" secondAttribute="leading" constant="77" id="yee-vv-WyK"/>
-                                            </constraints>
-                                        </view>
-                                        <blurEffect style="light"/>
-                                    </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNu-g0-WYu">
+                                        <rect key="frame" x="59" y="342" width="123" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                        <state key="normal" title="Start Game">
+                                            <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="StartGameButtonPressed:" destination="mMd-MV-9Xb" eventType="touchUpInside" id="SHm-KG-MBN"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ikn-7I-Usr">
-                                        <rect key="frame" x="40" y="246" width="160" height="108"/>
+                                        <rect key="frame" x="40" y="226" width="160" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ikn-7I-Usr" secondAttribute="height" multiplier="189:128" id="JjP-fs-SSe"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-de-Ovi">
+                                        <rect key="frame" x="77" y="372" width="87" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SettingsButtonPressed:" destination="mMd-MV-9Xb" eventType="touchUpInside" id="yj2-wk-i1h"/>
+                                            <segue destination="aXD-8g-na6" kind="presentation" id="Zob-U7-svK">
+                                                <segue key="commit" inheritsFrom="parent" id="11J-r8-GwC"/>
+                                                <segue key="preview" inheritsFrom="commit" id="PnT-iB-35J"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips: You can Peek &amp; Pop at Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFL-Q3-ANv">
+                                        <rect key="frame" x="28" y="541" width="184" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="I29-wX-MdS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="8"/>
+                                        <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Efe-1r-hEK" secondAttribute="trailing" id="Ev1-d5-2TV"/>
-                                    <constraint firstItem="Efe-1r-hEK" firstAttribute="leading" secondItem="B7R-1n-Ft6" secondAttribute="leading" id="GqU-dL-XfE"/>
+                                    <constraint firstAttribute="bottom" secondItem="KFL-Q3-ANv" secondAttribute="bottom" constant="15" id="3Oi-fe-Tiq"/>
+                                    <constraint firstItem="M6v-de-Ovi" firstAttribute="centerY" secondItem="B7R-1n-Ft6" secondAttribute="centerY" constant="90" id="DGU-Io-Ah1"/>
+                                    <constraint firstAttribute="trailing" secondItem="CNu-g0-WYu" secondAttribute="trailing" constant="58" id="E5g-uZ-bc5"/>
                                     <constraint firstItem="ikn-7I-Usr" firstAttribute="leading" secondItem="B7R-1n-Ft6" secondAttribute="leading" constant="40" id="Jkc-Hq-jpF"/>
+                                    <constraint firstItem="M6v-de-Ovi" firstAttribute="leading" secondItem="B7R-1n-Ft6" secondAttribute="leading" constant="77" id="LfD-3D-juV"/>
+                                    <constraint firstItem="CNu-g0-WYu" firstAttribute="leading" secondItem="B7R-1n-Ft6" secondAttribute="leading" constant="59" id="PhB-JP-Mb1"/>
                                     <constraint firstAttribute="trailing" secondItem="ikn-7I-Usr" secondAttribute="trailing" constant="40" id="Ppr-4a-Ezi"/>
-                                    <constraint firstItem="Efe-1r-hEK" firstAttribute="top" secondItem="B7R-1n-Ft6" secondAttribute="top" id="WHC-Cu-mae"/>
-                                    <constraint firstItem="ikn-7I-Usr" firstAttribute="centerY" secondItem="B7R-1n-Ft6" secondAttribute="centerY" id="XD6-Qw-PC1"/>
-                                    <constraint firstAttribute="bottom" secondItem="Efe-1r-hEK" secondAttribute="bottom" id="lfH-XD-FsO"/>
+                                    <constraint firstItem="CNu-g0-WYu" firstAttribute="centerY" secondItem="B7R-1n-Ft6" secondAttribute="centerY" constant="60" id="QTD-KB-zyt"/>
+                                    <constraint firstAttribute="trailing" secondItem="M6v-de-Ovi" secondAttribute="trailing" constant="76" id="RNZ-Hv-gWa"/>
+                                    <constraint firstItem="KFL-Q3-ANv" firstAttribute="leading" secondItem="B7R-1n-Ft6" secondAttribute="leading" constant="28" id="U55-PN-SI7"/>
+                                    <constraint firstItem="ikn-7I-Usr" firstAttribute="centerY" secondItem="B7R-1n-Ft6" secondAttribute="centerY" constant="-20" id="XD6-Qw-PC1"/>
+                                    <constraint firstAttribute="trailing" secondItem="KFL-Q3-ANv" secondAttribute="trailing" constant="28" id="sMZ-b8-HTk"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -95,12 +101,44 @@
                         <outlet property="LogoImageView" destination="ikn-7I-Usr" id="ejp-zF-A83"/>
                         <outlet property="MainMenuBackgroundSCNView" destination="9tw-oJ-XCD" id="qRd-fn-Hfk"/>
                         <outlet property="SettingsButton" destination="M6v-de-Ovi" id="MmR-8w-zuq"/>
+                        <outlet property="leftBarView" destination="B7R-1n-Ft6" id="dba-5h-Lrw"/>
                         <outlet property="startGameButton" destination="CNu-g0-WYu" id="6xI-m6-VCY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kRd-hp-dXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="736" y="-1331"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="w7C-1Y-0p6">
+            <objects>
+                <viewController id="aXD-8g-na6" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ilq-sX-5V9"/>
+                        <viewControllerLayoutGuide type="bottom" id="6nJ-sO-fwR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WNE-S6-95b">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yw6-Gz-CZ3">
+                                <rect key="frame" x="283" y="556" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="BackButtonPressed:" destination="aXD-8g-na6" eventType="touchUpInside" id="s4k-rX-UQ6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yw6-Gz-CZ3" firstAttribute="centerX" secondItem="WNE-S6-95b" secondAttribute="centerX" id="cq4-EI-2qP"/>
+                            <constraint firstItem="6nJ-sO-fwR" firstAttribute="top" secondItem="Yw6-Gz-CZ3" secondAttribute="bottom" constant="14" id="vf4-9P-xfu"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n9Y-gz-MxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1632" y="-1331"/>
         </scene>
         <!--Noise Debugger View Controller-->
         <scene sceneID="Ghh-o4-Y3a">
@@ -151,4 +189,7 @@
     <resources>
         <image name="SplashScreen_Logo" width="620" height="450"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Zob-U7-svK"/>
+    </inferredMetricsTieBreakers>
 </document>

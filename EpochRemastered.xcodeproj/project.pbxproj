@@ -17,6 +17,8 @@
 		0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */; };
 		0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */; };
 		0D4017241C9B04D800904A6D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC931C8FFD5A00FC93C8 /* AssetsLibrary.framework */; };
+		0D4017271C9B2DE300904A6D /* SettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D4017251C9B2DE300904A6D /* SettingsViewController.h */; };
+		0D4017281C9B2DE300904A6D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4017261C9B2DE300904A6D /* SettingsViewController.m */; };
 		0D449EE01C94B31F007F0AF6 /* JZ_CameraNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */; };
 		0D449EE11C94B31F007F0AF6 /* JZ_CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */; };
 		0D56002A1C9ADAFA00E90FB7 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */; };
@@ -144,6 +146,8 @@
 		0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JZ_PlanetDataSource.mm; sourceTree = "<group>"; };
 		0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_QuadtreeTerrainDataSource.h; sourceTree = "<group>"; };
 		0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_QuadtreeTerrainDataSource.m; sourceTree = "<group>"; };
+		0D4017251C9B2DE300904A6D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0D4017261C9B2DE300904A6D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_CameraNode.h; sourceTree = "<group>"; };
 		0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_CameraNode.m; sourceTree = "<group>"; };
 		0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
@@ -345,24 +349,6 @@
 		0D5600271C9AD9A300E90FB7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */,
-				0D5600291C9ADAFA00E90FB7 /* MainMenuViewController.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		0D7AFC861C8FF3B100FC93C8 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				0D7AFC871C8FF3D400FC93C8 /* JZ_ImageHelper.h */,
-				0D7AFC881C8FF3D400FC93C8 /* JZ_ImageHelper.mm */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
-		0D7AFCB31C91E90B00FC93C8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */,
 				0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */,
 				0D7AFCAF1C91E90600FC93C8 /* JZ_PlanetSCNNode.h */,
@@ -379,6 +365,26 @@
 				0D7AFCD31C92EEF000FC93C8 /* JZ_Atomsphere.m */,
 				0D7AFCD81C9300C600FC93C8 /* PlanetShader.frag */,
 				0D7AFCDA1C9301F100FC93C8 /* PlanetShader.vert */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0D7AFC861C8FF3B100FC93C8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0D7AFC871C8FF3D400FC93C8 /* JZ_ImageHelper.h */,
+				0D7AFC881C8FF3D400FC93C8 /* JZ_ImageHelper.mm */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		0D7AFCB31C91E90B00FC93C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */,
+				0D5600291C9ADAFA00E90FB7 /* MainMenuViewController.m */,
+				0D4017251C9B2DE300904A6D /* SettingsViewController.h */,
+				0D4017261C9B2DE300904A6D /* SettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 			files = (
 				0D7AFCD41C92EEF000FC93C8 /* JZ_Atomsphere.h in Headers */,
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
+				0D4017271C9B2DE300904A6D /* SettingsViewController.h in Headers */,
 				0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */,
 				0D56002A1C9ADAFA00E90FB7 /* MainMenuViewController.h in Headers */,
 				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
@@ -772,6 +779,7 @@
 				0D449EE11C94B31F007F0AF6 /* JZ_CameraNode.m in Sources */,
 				0D7AFCBF1C91F95400FC93C8 /* JZ_Player.m in Sources */,
 				0D38567C1C934C9E0044399A /* JZ_HUDNode.m in Sources */,
+				0D4017281C9B2DE300904A6D /* SettingsViewController.m in Sources */,
 				0D92BE631C8DE6C100FFE0E2 /* AppDelegate.m in Sources */,
 				0D3856781C934AB50044399A /* JZ_ControlView.m in Sources */,
 				0D92BE681C8DE6C100FFE0E2 /* GameViewController.m in Sources */,

@@ -14,12 +14,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *LogoImageView;
 @property (weak, nonatomic) IBOutlet UIButton *startGameButton;
 @property (weak, nonatomic) IBOutlet UIButton *SettingsButton;
+@property (weak, nonatomic) IBOutlet UIView *leftBarView;
 
 @end
 
 @implementation MainMenuViewController
 
-@synthesize MainMenuBackgroundSCNView,LogoImageView;
+@synthesize MainMenuBackgroundSCNView,LogoImageView,leftBarView;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,9 +31,17 @@
     MainMenuBackgroundSCNView.scene = scene;
     MainMenuBackgroundSCNView.playing = YES;
     
-//    
-//    CIFilter *filter = [CIFilter filterWithName:@"CIBloom"];
-//    MainMenuBackgroundSCNView.scene.rootNode.filters = @[filter];
+
+    
+    //FADE IN
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.duration = 3.0f;
+    animation.fromValue = [NSNumber numberWithFloat:0.0f];
+    animation.toValue = [NSNumber numberWithFloat:1.0f];
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeBoth;
+    animation.additive = NO;
+    [leftBarView.layer addAnimation:animation forKey:@"opacityIN"];
     
 }
 
@@ -42,6 +51,10 @@
 }
 
 - (IBAction)StartGameButtonPressed:(id)sender
+{
+    
+}
+- (IBAction)SettingsButtonPressed:(id)sender
 {
     
 }

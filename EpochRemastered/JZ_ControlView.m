@@ -33,6 +33,7 @@
 @synthesize joystickReleaseDistance;
 @synthesize JoystickTouchVector,speedSliderDirection,speedSliderFullScreemViewStartPoint;
 
+#pragma mark - instancetype / id
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -44,6 +45,7 @@
     return self;
 }
 
+#pragma mark - init, call once
 - (void) initControl
 {
     speedSliderFullScreemView = [[UIView alloc] initWithFrame:[self frame]];
@@ -73,6 +75,8 @@
     [self layoutElements];
 }
 
+
+#pragma mark - init, call multi-times as long as screen rotates.
 - (void)layoutElements
 {
     joystickPoint = CGPointMake(self.frame.size.width/10*2, self.frame.size.height/10*8);
@@ -86,6 +90,8 @@
     joystickReleaseDistance = sqrt(powf(joystickLeftBaseImageView.frame.size.width/2, 2.0f) + powf(joystickLeftBaseImageView.frame.size.height/2, 2.0f));
 }
 
+
+#pragma mark - handle UIGestureRecognizer
 - (void)handlejoystickLeftBaseImageViewPan:(UIPanGestureRecognizer *)gesture
 {
     //Check if Joystick touch image have be dragged out the Base Image's Bounds;

@@ -10,4 +10,6 @@
 
 @interface SettingsViewController : UIViewController
 
+//@property (strong,nonatomic) UIImage *imageForBlur;
+
 @end

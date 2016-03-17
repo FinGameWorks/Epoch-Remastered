@@ -17,6 +17,7 @@
 * [ ] Advanced Texture Mapping
 * [ ] Atomsphere & Ocean Shader
 * [ ] Object Spawing
+* [ ] 3D Touch Stuff
 
 # Download them before build
 Using OpenCV Framework  

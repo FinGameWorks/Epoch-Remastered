@@ -25,8 +25,24 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3DTouchStar</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Feeling Lucky!</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Random Universe</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string></string>
+			<string>EpochRemastered.RandomUniverse</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3DTouchPlane</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Back to Cockpit!</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Resume Universe</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>EpochRemastered.ResumeUniverse</string>
 		</dict>
 	</array>
 	<key>UIFileSharingEnabled</key>

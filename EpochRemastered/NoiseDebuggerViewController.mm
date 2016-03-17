@@ -47,7 +47,7 @@
 
 @implementation NoiseDebuggerViewController
 @synthesize UIColorImage,UIHeightImage,UINormalImage,PlanetSceneKitView,PlanetNode;
-@synthesize RandomSeedSlider,controlView;
+@synthesize controlView;
 
 - (void)viewDidLoad
 {
@@ -60,7 +60,7 @@
     controlView = [[JZ_ControlView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:controlView];
     
-    [RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    //[RandomSeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     [self initSceneKitWith:[self NoiseCubemapWithSeed:SCNVector3Make(10.0f, 2.0f, 0.6f)]];
     
@@ -535,13 +535,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)sliderValueChanged:(UISlider *)sender
-{
-    NSLog(@"slider value = %f", sender.value);
-
-    PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value*2, 2.0f*sender.value*2, 0.6f*sender.value*2)];
-}
+//
+//- (IBAction)sliderValueChanged:(UISlider *)sender
+//{
+//    NSLog(@"slider value = %f", sender.value);
+//
+//    PlanetNode.geometry.materials = [self NoiseCubemapWithSeed:SCNVector3Make(10.0f*sender.value*2, 2.0f*sender.value*2, 0.6f*sender.value*2)];
+//}
 
 #pragma mark - Update Method
 - (void)renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time

@@ -16,9 +16,11 @@
 // Planet Map Generation Parameter
 @property (nonatomic) float basicSubmeshLevel;
 
-
 // Debug
 @property (nonatomic) BOOL isDebug;
+
+// LOD
+
 
 
 

@@ -16,8 +16,11 @@
 		0D3856821C93FF7E0044399A /* JZ_PlanetDataSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856801C93FF7E0044399A /* JZ_PlanetDataSource.mm */; };
 		0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3856841C940F740044399A /* JZ_QuadtreeTerrainDataSource.h */; };
 		0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */; };
+		0D4017241C9B04D800904A6D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC931C8FFD5A00FC93C8 /* AssetsLibrary.framework */; };
 		0D449EE01C94B31F007F0AF6 /* JZ_CameraNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */; };
 		0D449EE11C94B31F007F0AF6 /* JZ_CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */; };
+		0D56002A1C9ADAFA00E90FB7 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */; };
+		0D56002B1C9ADAFA00E90FB7 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5600291C9ADAFA00E90FB7 /* MainMenuViewController.m */; };
 		0D7AFC771C8E086C00FC93C8 /* noiseutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */; };
 		0D7AFC791C8E0A0B00FC93C8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */; };
 		0D7AFC7B1C8EAAA800FC93C8 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7AFC7A1C8EAAA800FC93C8 /* SceneKit.framework */; };
@@ -143,6 +146,8 @@
 		0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_QuadtreeTerrainDataSource.m; sourceTree = "<group>"; };
 		0D449EDE1C94B31F007F0AF6 /* JZ_CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZ_CameraNode.h; sourceTree = "<group>"; };
 		0D449EDF1C94B31F007F0AF6 /* JZ_CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZ_CameraNode.m; sourceTree = "<group>"; };
+		0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		0D5600291C9ADAFA00E90FB7 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		0D7AFC751C8E086C00FC93C8 /* noiseutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noiseutils.cpp; sourceTree = "<group>"; };
 		0D7AFC761C8E086C00FC93C8 /* noiseutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noiseutils.h; sourceTree = "<group>"; };
 		0D7AFC781C8E0A0B00FC93C8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -286,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4017241C9B04D800904A6D /* AssetsLibrary.framework in Frameworks */,
 				0D7AFCCB1C9201E600FC93C8 /* QuartzCore.framework in Frameworks */,
 				0D7AFCCA1C9201E100FC93C8 /* AVFoundation.framework in Frameworks */,
 				0D7AFCC91C9201DA00FC93C8 /* OpenGLES.framework in Frameworks */,
@@ -334,6 +340,15 @@
 				0D3856851C940F740044399A /* JZ_QuadtreeTerrainDataSource.m */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		0D5600271C9AD9A300E90FB7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0D5600281C9ADAFA00E90FB7 /* MainMenuViewController.h */,
+				0D5600291C9ADAFA00E90FB7 /* MainMenuViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		0D7AFC861C8FF3B100FC93C8 /* Utilities */ = {
@@ -423,6 +438,7 @@
 				0D38567A1C934C9E0044399A /* JZ_HUDNode.m */,
 				0D3856751C934AB50044399A /* JZ_ControlView.h */,
 				0D3856761C934AB50044399A /* JZ_ControlView.m */,
+				0D5600271C9AD9A300E90FB7 /* View */,
 				0D7AFCB31C91E90B00FC93C8 /* Controller */,
 				0D3856831C93FF810044399A /* Data */,
 				0D7AFC861C8FF3B100FC93C8 /* Utilities */,
@@ -576,6 +592,7 @@
 				0D7AFCD41C92EEF000FC93C8 /* JZ_Atomsphere.h in Headers */,
 				0D7AFCB61C91EA2800FC93C8 /* JZ_Skybox.h in Headers */,
 				0D3856861C940F740044399A /* JZ_QuadtreeTerrainDataSource.h in Headers */,
+				0D56002A1C9ADAFA00E90FB7 /* MainMenuViewController.h in Headers */,
 				0D7AFCBA1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.h in Headers */,
 				0D7AFCC21C91F96B00FC93C8 /* JZ_MainPlayer.h in Headers */,
 				0D3856811C93FF7E0044399A /* JZ_PlanetDataSource.h in Headers */,
@@ -761,6 +778,7 @@
 				0D7AFCC31C91F96B00FC93C8 /* JZ_MainPlayer.m in Sources */,
 				0D7AFCB21C91E90600FC93C8 /* JZ_PlanetSCNNode.m in Sources */,
 				0D7AFCBB1C91F8AF00FC93C8 /* JZ_CameraPostProcessing.m in Sources */,
+				0D56002B1C9ADAFA00E90FB7 /* MainMenuViewController.m in Sources */,
 				0DDF99D51C8DF2720050D471 /* NoiseDebuggerViewController.mm in Sources */,
 				0D3856871C940F740044399A /* JZ_QuadtreeTerrainDataSource.m in Sources */,
 				0D92BE601C8DE6C100FFE0E2 /* main.m in Sources */,
@@ -912,6 +930,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -944,6 +963,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = EpochRemastered/EpochRematered.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -952,6 +972,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -976,6 +997,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EpochRemastered",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = EpochRemastered;
 				PRODUCT_NAME = EpochRemastered;
 				SWIFT_OBJC_BRIDGING_HEADER = "EpochRemastered/EpochRemastered-Bridging-Header.h";
@@ -1002,6 +1024,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EpochRemastered",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = EpochRemastered;
 				PRODUCT_NAME = EpochRemastered;
 				SWIFT_OBJC_BRIDGING_HEADER = "EpochRemastered/EpochRemastered-Bridging-Header.h";
@@ -1064,7 +1087,7 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1073,7 +1096,7 @@
 		0DDF9A1E1C8DF9000050D471 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

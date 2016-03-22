@@ -54,6 +54,9 @@ performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
     {
         
     }
+    
+    //[[UIApplication sharedApplication] performSelector:@selector(suspend)];
+    
 }
 
 @end

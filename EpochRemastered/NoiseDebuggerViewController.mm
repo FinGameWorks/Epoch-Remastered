@@ -66,6 +66,7 @@
     
     PlanetSceneKitView.delegate = self;
 
+    //PlanetSceneKitView.debugOptions = SCNDebugOptionShowWireframe;
     
 }
 
@@ -201,7 +202,7 @@
     [player initShip];
     [PlanetSceneKitView.scene.rootNode addChildNode:player];
     player.geometry.firstMaterial.reflective.contents = PlanetSceneKitView.scene.background.contents;
-    player.position = SCNVector3Make(200, 0, 0);
+    player.position = SCNVector3Make(1200, 0, 0);
     player.controlView = self.controlView;
     
     //[player childNodeWithName:@"PlayerCamera" recursively:YES].camera.automaticallyAdjustsZRange = YES;
@@ -247,7 +248,7 @@
     ambientLightNode.light.color = [UIColor darkGrayColor];
     [PlanetSceneKitView.scene.rootNode addChildNode:ambientLightNode];
     
-    SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:200.0f height:200.0f length:200.0f chamferRadius:0.0f];
+    SCNBox *SCNBoxToSphereMapping = [SCNBox boxWithWidth:1000.0f height:1000.0f length:1000.0f chamferRadius:0.0f];
     SCNBoxToSphereMapping.widthSegmentCount = SubMesh;
     SCNBoxToSphereMapping.heightSegmentCount = SubMesh;
     SCNBoxToSphereMapping.lengthSegmentCount = SubMesh;

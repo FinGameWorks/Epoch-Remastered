@@ -7,6 +7,7 @@
 //
 
 #import "MainMenuViewController.h"
+#import "NoiseDebuggerViewController.h"
 @import SceneKit;
 
 @interface MainMenuViewController ()
@@ -50,10 +51,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)StartGameButtonPressed:(id)sender
-{
-    
-}
 - (IBAction)SettingsButtonPressed:(id)sender
 {
     
